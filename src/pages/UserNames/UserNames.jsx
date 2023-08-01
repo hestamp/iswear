@@ -31,16 +31,6 @@ const UserNames = () => {
     func('')
   }
 
-  const saveName = (e) => {
-    e.preventDefault()
-    if (firstName.length > 2 && twoName.length > 2) {
-      localStorage.setItem('username', firstName)
-      dispatch(uUserName(firstName))
-      dispatch(uSecondName(twoName))
-      navigate('/duo/params')
-    }
-  }
-
   const generateRandomName = () => {
     const randomIndex = Math.floor(Math.random() * randomNames.length)
     return randomNames[randomIndex]
@@ -49,6 +39,16 @@ const UserNames = () => {
   const getName = (setFunc) => {
     const newName = generateRandomName()
     setFunc(newName)
+  }
+
+  const saveName = (e) => {
+    e.preventDefault()
+    if (firstName.length > 2 && twoName.length > 2) {
+      localStorage.setItem('username', firstName)
+      dispatch(uUserName(firstName))
+      dispatch(uSecondName(twoName))
+      navigate('/duo/params')
+    }
   }
 
   return (

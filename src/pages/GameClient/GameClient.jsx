@@ -4,7 +4,7 @@ import styles from './GameClient.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { uPageName } from '../../store/tempSlice'
 import { useNavigate } from 'react-router-dom'
-import { FaUber } from 'react-icons/fa'
+
 import { PiUserSwitchBold } from 'react-icons/pi'
 import { TbSwitch2 } from 'react-icons/tb'
 import { uSecondName, uUserName } from '../../store/userPickSlice'
@@ -15,11 +15,25 @@ const GameClient = () => {
 
   const [isCard, setIsCard] = useState(false)
   const [activeSpeaker, setActiveSpeaker] = useState(1)
-  const [seconds, setSeconds] = useState(0)
+  const [upRound, setUpRound] = useState(0)
+  const [seconds, setSeconds] = useState(60)
   const intervalRef = useRef(null)
+  const audioRef = useRef(null)
+  const audioFinishRef = useRef(null)
   const [topicName, setTopicName] = useState('')
   const [reasonName, setReasonName] = useState('')
   const [categoryName, setCategoryName] = useState('')
+
+  const playBeep = () => {
+    if (audioRef.current) {
+      audioRef.current.play()
+    }
+  }
+  const playBeepFinish = () => {
+    if (audioFinishRef.current) {
+      audioFinishRef.current.play()
+    }
+  }
 
   const [isTimer, setIsTimer] = useState(false)
   const { userName, secondName, topicObj, questArray } = useSelector(
@@ -30,6 +44,14 @@ const GameClient = () => {
     const randomIndex = Math.floor(Math.random() * questArray.length)
     return questArray[randomIndex]
   }
+
+  useEffect(() => {
+    if (upRound == 1) {
+      setActiveSpeaker(1)
+    } else if (upRound == 2) {
+      setActiveSpeaker(2)
+    }
+  }, [upRound])
 
   useEffect(() => {
     if (!userName || !secondName) {
@@ -45,9 +67,9 @@ const GameClient = () => {
       setReasonName('Прибульці')
     }
 
-    if (questArray) {
-      getNewTopic()
-    }
+    // if (questArray) {
+    //   getNewTopic()
+    // }
   }, [])
 
   const getNewTopic = () => {
@@ -63,14 +85,36 @@ const GameClient = () => {
     if (seconds == 0) {
       setIsTimer(false)
     }
+
+    if (seconds < 3 && seconds != 0) {
+      playBeep()
+    }
+
+    if (seconds == 0) {
+      playBeepFinish()
+    }
   }, [seconds])
 
   const startTimer = () => {
+    if (topicName == '') {
+      getNewTopic()
+    }
+    if (upRound <= 1) {
+      setUpRound((prev) => prev + 1)
+    } else if (upRound == 0) {
+      getNewTopic()
+    } else {
+      setUpRound(0)
+      getNewTopic()
+    }
+
     setIsTimer(true)
-    setSeconds(60)
+    setSeconds(10)
     if (intervalRef.current) return
     intervalRef.current = setInterval(() => {
-      setSeconds((prevSeconds) => (prevSeconds > 0 ? prevSeconds - 1 : 0))
+      setSeconds((prevSeconds) => {
+        return prevSeconds > 0 ? prevSeconds - 1 : 0
+      })
     }, 1000)
   }
 
@@ -102,9 +146,9 @@ const GameClient = () => {
     <div
       style={{
         backgroundColor: `${
-          isTimer && activeSpeaker == 1
+          isTimer && upRound == 1
             ? 'skyblue'
-            : isTimer && activeSpeaker == 2
+            : isTimer && upRound == 2
             ? 'pink'
             : ''
         }`,
@@ -154,6 +198,7 @@ const GameClient = () => {
               </div>
 
               <h2>{topicName}</h2>
+              <h2>{upRound}</h2>
 
               <div className={styles.reasonBlock}>
                 <h3>Причина:</h3>
@@ -210,6 +255,8 @@ const GameClient = () => {
           )}
         </div>
       </div>
+      <audio preload="auto" ref={audioRef} src="/beep.wav" />
+      <audio preload="auto" ref={audioFinishRef} src="/finish.wav" />
     </div>
   )
 }

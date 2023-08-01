@@ -4,13 +4,14 @@ import { Link } from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { uPageName } from '../../store/tempSlice'
-import { categoriesArr } from '../../../data/static'
+import { categoriesArr, randomNames } from '../../../data/static'
 import { uPickedMode, uUserName } from '../../store/userPickSlice'
 
 import { PiCheckFatFill } from 'react-icons/pi'
 
-import { MdOutlineModeEdit } from 'react-icons/md'
+import { MdOutlineClose, MdOutlineModeEdit } from 'react-icons/md'
 import MyInput from '../../components/Tools/MyInput/MyInput'
+import { FaRandom } from 'react-icons/fa'
 
 const MainPage = () => {
   const dispatch = useDispatch()
@@ -48,6 +49,19 @@ const MainPage = () => {
     setSavedName(null)
   }
 
+  const clearInput = (func) => {
+    func('')
+  }
+
+  const generateRandomName = () => {
+    const randomIndex = Math.floor(Math.random() * randomNames.length)
+    return randomNames[randomIndex]
+  }
+
+  const getName = (setFunc) => {
+    const newName = generateRandomName()
+    setFunc(newName)
+  }
   return (
     <div className={styles.allPage}>
       <div className={styles.mainPage}>
@@ -60,12 +74,27 @@ const MainPage = () => {
           ) : (
             <form onSubmit={saveName} className={styles.nameBlock}>
               <h3>Вкажіть ім'я щоб розпочати</h3>
+
               <MyInput
+                rightIco={
+                  <MdOutlineClose
+                    style={{ opacity: `${tempUserName.length}` }}
+                    className={styles.closeIco}
+                    onClick={() => clearInput(setTempUserName)}
+                  />
+                }
+                leftIco={
+                  <FaRandom
+                    onClick={() => getName(setTempUserName)}
+                    className={styles.closeIco}
+                  />
+                }
                 placeholder="прояви фантазію"
                 setFunc={setTempUserName}
                 maxLength={10}
                 minLength={3}
                 value={tempUserName}
+                bgcolor="white"
               />
 
               <button onClick={saveName} className={styles.saveBtn}>

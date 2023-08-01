@@ -36,7 +36,6 @@ function App() {
   }, [])
   return (
     <div className={styles.container}>
-      {/* <MyLoader isLoading={true} /> */}
       <div className={` ${sidebar ? styles.sidebarOpen : styles.sidebarClose}`}>
         <Sidebar />
       </div>
@@ -56,7 +55,6 @@ function App() {
           <Route exact path="/settings" element={<Settings />} />
           <Route exact path="/about" element={<AboutPage />} />
         </Routes>
-        <hr style={{ opacity: 0 }} />
       </div>
     </div>
   )
