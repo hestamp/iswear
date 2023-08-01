@@ -1,0 +1,20 @@
+.buttBlock {
+  gap: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-weight: 600;
+}
+
+.buttBlock h3 {
+  font-size: 14px;
+}
+
+.roundIco {
+  width: 24px;
+  height: 24px;
+  padding: 5px;
+  color: inherit;
+  border-radius: 10px;
+}

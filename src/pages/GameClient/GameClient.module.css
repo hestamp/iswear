@@ -1,0 +1,187 @@
+.allPage {
+  width: 100%;
+  max-width: 700px;
+  background-color: white;
+  height: 100%;
+  overflow: hidden;
+  max-height: 100%;
+}
+
+.gameClient {
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 3fr 1fr 1fr;
+  align-items: center;
+}
+
+.reasonBlock {
+  width: 100%;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: lightgrey;
+  border-radius: 5px;
+}
+.buttAndName {
+  width: 100%;
+  display: flex;
+  height: 50px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: lightgray;
+  border-radius: 5px;
+  gap: 0.5rem;
+}
+
+.buttAndName svg {
+  width: 40px;
+  height: 40px;
+  margin: 0 1rem;
+}
+
+.icoSvg {
+  width: 30px;
+}
+.icoSvg2 {
+  width: 30px;
+  transform: scaleX(-1);
+}
+
+.allInfoBlock {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.userBLock {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.oneUser {
+  display: flex;
+  gap: 5px;
+  width: 150px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  border: 2px solid transparent;
+}
+
+.activeUser {
+  border: 2px solid black;
+}
+
+.oneUser:hover {
+  transition: 0.3s;
+  background-color: lightgray;
+}
+
+.gameInfo {
+  width: 100%;
+}
+
+.buttBlock {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.cardInfo {
+  width: 100%;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.topicName {
+  width: 100%;
+
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.cardBlock {
+  width: calc(100% - 2rem);
+  max-width: 400px;
+  margin: 0 1rem;
+  height: 300px;
+  border: 2px solid gray;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  background-color: whitesmoke;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px;
+}
+
+@media (min-width: 1280px) {
+  .cardBlock {
+    height: 400px;
+  }
+}
+
+.myButt {
+  cursor: pointer;
+  border-radius: 5px;
+  width: 150px;
+  padding: 10px;
+  color: white;
+  background-color: black;
+  border: 2px solid transparent;
+  font-size: 16px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.myButt:hover {
+  transition: 0.3s;
+  border: 2px solid black;
+  color: black;
+  background-color: lightgray;
+}
+.positionH {
+  margin: 0.5rem;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.myButt2 {
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 5px 10px;
+  color: white;
+  background-color: gray;
+  border: 2px solid transparent;
+  font-size: 16px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.myButt2:hover {
+  transition: 0.3s;
+  border: 2px solid black;
+  color: black;
+  background-color: lightgray;
+}

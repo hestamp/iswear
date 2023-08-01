@@ -1,0 +1,157 @@
+.mainSide {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.section1 {
+  flex: 1;
+  font-weight: 600;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section2 {
+  flex: 12;
+  width: 100%;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+}
+
+.section3 {
+  flex: 1.5;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 1280px) {
+  .section1 {
+    flex: 1;
+  }
+  .section2 {
+    flex: 16;
+  }
+}
+
+.ico0 {
+  opacity: 0;
+}
+
+.icoClose {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  color: black;
+  transition: 0.3s;
+}
+.icoClose:hover {
+  color: lightgray;
+  transition: 0.3s;
+}
+
+.pagesBlock {
+  padding: 3px 0;
+}
+
+.normalLink {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 0.66rem;
+  border-radius: 5px;
+  color: inherit;
+  font-weight: 500;
+  margin: 5px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.normalLink:hover {
+  background-color: lightgray;
+  transition: 0.3s;
+  color: black;
+}
+
+.activeLink {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.66rem;
+  padding-left: 1.5rem;
+  border-radius: 5px;
+  margin: 5px;
+  color: black;
+  font-weight: 600;
+  font-size: medium;
+  text-decoration: none;
+  transition: 0.3s;
+  justify-content: space-between;
+}
+
+.textIcoBLock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.menuIcon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.newDiv {
+  background-color: white;
+  border: 1px solid lightgray;
+  padding: 5px;
+  border-radius: 5px;
+  color: black;
+  opacity: 0.9;
+  font-weight: 500;
+}
+.newDiv:hover {
+  opacity: 1;
+}
+
+.socBlock {
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5px;
+  border-radius: 5px;
+}
+
+@media screen and (max-height: 600px) {
+  .socBlock {
+    position: relative;
+    margin-bottom: 0;
+    margin-left: 0;
+    border-radius: 0px;
+  }
+}
+
+.socB {
+  padding: 5px 15px;
+}
+
+.socIcon {
+  width: 30px;
+  height: 30px;
+  opacity: 1;
+  color: black;
+  cursor: pointer;
+  transition: 0.33s;
+}
+
+.socIcon:hover {
+  opacity: 0.6;
+  transition: 0.33s;
+}

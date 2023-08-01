@@ -1,0 +1,18 @@
+.inputDiv {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin: 1rem 0;
+}
+
+.inputDiv input {
+  position: relative;
+  width: 100%;
+  padding: 10px 5px;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 20px;
+}
