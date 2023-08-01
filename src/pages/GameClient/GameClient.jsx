@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { PiUserSwitchBold } from 'react-icons/pi'
 import { TbSwitch2 } from 'react-icons/tb'
-import { uSecondName, uUserName } from '../../store/userPickSlice'
+import { uQuestArray, uSecondName, uUserName } from '../../store/userPickSlice'
 
 const GameClient = () => {
   const dispatch = useDispatch()
@@ -23,6 +23,10 @@ const GameClient = () => {
   const [topicName, setTopicName] = useState('')
   const [reasonName, setReasonName] = useState('')
   const [categoryName, setCategoryName] = useState('')
+  const [isTimer, setIsTimer] = useState(false)
+  const { userName, secondName, topicObj, questArray } = useSelector(
+    (state) => state.userPick
+  )
 
   const playBeep = () => {
     if (audioRef.current) {
@@ -35,13 +39,15 @@ const GameClient = () => {
     }
   }
 
-  const [isTimer, setIsTimer] = useState(false)
-  const { userName, secondName, topicObj, questArray } = useSelector(
-    (state) => state.userPick
-  )
-
-  const generateRandomTopic = () => {
+  const generateRandomTopic = (notrandom) => {
     const randomIndex = Math.floor(Math.random() * questArray.length)
+
+    if (notrandom) {
+      const updatedArray = [...questArray]
+      updatedArray.splice(randomIndex, 1)
+      dispatch(uQuestArray(updatedArray))
+    }
+
     return questArray[randomIndex]
   }
 
@@ -67,12 +73,16 @@ const GameClient = () => {
       setReasonName('Прибульці')
     }
 
-    // if (questArray) {
-    //   getNewTopic()
-    // }
+    if (questArray) {
+      getNewTopic()
+    }
   }, [])
 
   const getNewTopic = () => {
+    const newTopic = generateRandomTopic(true)
+    setTopicName(newTopic)
+  }
+  const getRandom = () => {
     const newTopic = generateRandomTopic()
     setTopicName(newTopic)
   }
@@ -105,7 +115,7 @@ const GameClient = () => {
     }
 
     setIsTimer(true)
-    setSeconds(10)
+    setSeconds(60)
     if (intervalRef.current) return
     intervalRef.current = setInterval(() => {
       setSeconds((prevSeconds) => {
@@ -121,9 +131,13 @@ const GameClient = () => {
   const resetTimer = () => {
     clearInterval(intervalRef.current)
     intervalRef.current = null
-    setSeconds(10)
+    setSeconds(60)
     setUpRound((prev) => prev + 1)
     setIsTimer(false)
+  }
+
+  const nextPlayer = (num) => {
+    setActiveSpeaker(num)
   }
 
   const switchNames = () => {
@@ -143,9 +157,9 @@ const GameClient = () => {
     <div
       style={{
         backgroundColor: `${
-          isTimer && upRound == 1
+          isTimer && activeSpeaker == 1
             ? 'skyblue'
-            : isTimer && upRound == 2
+            : isTimer && activeSpeaker == 2
             ? 'pink'
             : ''
         }`,
@@ -155,6 +169,7 @@ const GameClient = () => {
       <div className={styles.gameClient}>
         <div className={styles.userBLock}>
           <div
+            onClick={() => nextPlayer(1)}
             style={{ backgroundColor: 'skyblue' }}
             className={`${styles.oneUser} ${
               activeSpeaker == 1 && styles.activeUser
@@ -166,6 +181,7 @@ const GameClient = () => {
             <h3>{userName}</h3>
           </div>
           <div
+            onClick={() => nextPlayer(2)}
             style={{ backgroundColor: 'pink' }}
             className={`${styles.oneUser} ${
               activeSpeaker == 2 && styles.activeUser
@@ -189,13 +205,16 @@ const GameClient = () => {
 
                 <h3 className={styles.topicName}> {truncatedTopicName}</h3>
                 <TbSwitch2
-                  onClick={getNewTopic}
+                  onClick={getRandom}
                   style={{ display: `${isTimer ? 'none' : ''}` }}
                 />
               </div>
 
-              <h2>{topicName}</h2>
-              <h2>{upRound}</h2>
+              {questArray && questArray.length ? (
+                <h2>{topicName}</h2>
+              ) : (
+                <h2>Теми закінчились</h2>
+              )}
 
               <div className={styles.reasonBlock}>
                 <h3>Причина:</h3>
@@ -247,6 +266,9 @@ const GameClient = () => {
             <div className={styles.buttBlock}>
               <button onClick={startTimer} className={styles.myButt}>
                 Почати
+              </button>
+              <button onClick={getNewTopic} className={styles.myButt}>
+                Наступна тема
               </button>
             </div>
           )}
