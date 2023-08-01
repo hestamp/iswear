@@ -10,7 +10,7 @@ import { uPickedMode, uUserName } from '../../store/userPickSlice'
 import { PiCheckFatFill } from 'react-icons/pi'
 
 import { MdOutlineModeEdit } from 'react-icons/md'
-import MyInput from '../../components/AltComponents/Tools/MyInput/MyInput'
+import MyInput from '../../components/Tools/MyInput/MyInput'
 
 const MainPage = () => {
   const dispatch = useDispatch()

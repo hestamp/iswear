@@ -41,6 +41,7 @@ const GameClient = () => {
   useEffect(() => {
     if (topicObj) {
       setCategoryName(topicObj.name)
+
       setReasonName('Прибульці')
     }
 

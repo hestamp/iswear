@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './Navbar.module.css'
-import { uSidebar } from '../../store/logicSlice'
-import { useDispatch, useSelector } from 'react-redux'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { uSidebar } from '../../store/logicSlice'
 import { RiMenu2Fill } from 'react-icons/ri'
 import { FaRegUser } from 'react-icons/fa'
 

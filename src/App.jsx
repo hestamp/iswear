@@ -4,7 +4,6 @@ import { Routes, Route } from 'react-router-dom'
 
 import Sidebar from './components/Sidebar/Sidebar'
 import { useDispatch, useSelector } from 'react-redux'
-import NavBar from './components/NavBar/NavBar'
 
 import Settings from './pages/Settings/Settings'
 import AboutPage from './pages/AboutPage/AboutPage'
@@ -17,6 +16,7 @@ import GameClient from './pages/GameClient/GameClient'
 import UserNames from './pages/UserNames/UserNames'
 import { useEffect } from 'react'
 import { uUserName } from './store/userPickSlice'
+import NavBar from './components/NavBar/Navbar'
 
 function App() {
   const dispatch = useDispatch()

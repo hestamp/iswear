@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import styles from './ModePicker.module.css'
-import { useNavigate, useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { uPageName } from '../../store/tempSlice'
-import MySpinner from '../../components/AltComponents/Tools/MySpinner/MySpinner'
-
-import BackBar from '../../components/BackBar/BackBar'
 import { uSubMode } from '../../store/userPickSlice'
+
+import MySpinner from '../../components/Tools/MySpinner/MySpinner'
+import BackBar from '../../components/Tools/BackBar/BackBar'
 
 const modeList = [
   {
@@ -29,10 +29,8 @@ const modeList = [
   },
 ]
 const ModePicker = () => {
-  const { catname } = useParams()
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { mainCategory } = useSelector((state) => state.userPick)
 
   useEffect(() => {
     dispatch(uPageName('Дебати'))

@@ -10,8 +10,8 @@ import { RiInformationLine } from 'react-icons/ri'
 import { PiPathBold } from 'react-icons/pi'
 import { GoProjectRoadmap } from 'react-icons/go'
 
-import MyTooltip from '../AltComponents/MyTooltip/MyTooltip'
 import { FaInstagram, FaPinterest, FaTwitter } from 'react-icons/fa'
+import MyTooltip from '../Tools/MyTooltip/MyTooltip'
 const menuLinks = [
   {
     name: 'Головна',

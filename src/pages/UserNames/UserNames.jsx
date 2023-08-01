@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import styles from './UserNames.module.css'
-import BackBar from '../../components/BackBar/BackBar'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { PiCheckFatFill } from 'react-icons/pi'
-import MyInput from '../../components/AltComponents/Tools/MyInput/MyInput'
+
 import { uSecondName, uUserName } from '../../store/userPickSlice'
 import { useNavigate } from 'react-router-dom'
 import { MdOutlineClose } from 'react-icons/md'
 import { FaRandom } from 'react-icons/fa'
 import { randomNames } from '../../../data/static'
+import BackBar from '../../components/Tools/BackBar/BackBar'
+import MyInput from '../../components/Tools/MyInput/MyInput'
 const UserNames = () => {
   const [firstName, setFirstName] = useState('')
   const [twoName, setTwoName] = useState('')
@@ -59,6 +61,7 @@ const UserNames = () => {
           <MyInput
             rightIco={
               <MdOutlineClose
+                style={{ opacity: `${firstName.length}` }}
                 className={styles.closeIco}
                 onClick={() => clearInput(setFirstName)}
               />
@@ -81,6 +84,7 @@ const UserNames = () => {
             placeholder=""
             rightIco={
               <MdOutlineClose
+                style={{ opacity: `${twoName.length}` }}
                 className={styles.closeIco}
                 onClick={() => clearInput(setTwoName)}
               />

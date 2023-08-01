@@ -4,10 +4,10 @@ import styles from './CategoriesPage.module.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { uPageName } from '../../store/tempSlice'
 
-import BackBar from '../../components/BackBar/BackBar'
 import { useNavigate } from 'react-router-dom'
 import { staticMenu } from '../../../data/static'
 import { uPickedTopic, uQuestArray, uTopicObj } from '../../store/userPickSlice'
+import BackBar from '../../components/Tools/BackBar/BackBar'
 
 const CategoriesPage = () => {
   const navigate = useNavigate()
