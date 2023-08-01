@@ -84,14 +84,12 @@ const GameClient = () => {
   useEffect(() => {
     if (seconds == 0) {
       setIsTimer(false)
+      playBeepFinish()
+      setUpRound((prev) => prev + 1)
     }
 
     if (seconds < 3 && seconds != 0) {
       playBeep()
-    }
-
-    if (seconds == 0) {
-      playBeepFinish()
     }
   }, [seconds])
 
@@ -99,9 +97,7 @@ const GameClient = () => {
     if (topicName == '') {
       getNewTopic()
     }
-    if (upRound <= 1) {
-      setUpRound((prev) => prev + 1)
-    } else if (upRound == 0) {
+    if (upRound == 0) {
       getNewTopic()
     } else {
       setUpRound(0)
@@ -126,6 +122,7 @@ const GameClient = () => {
     clearInterval(intervalRef.current)
     intervalRef.current = null
     setSeconds(10)
+    setUpRound((prev) => prev + 1)
     setIsTimer(false)
   }
 
