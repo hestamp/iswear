@@ -86,14 +86,17 @@ const Sidebar = () => {
           className={styles.ico0}
           onClick={toggleSide}
         />
-        <h3>iSwear</h3>
+        <div className={styles.logoDiv}>
+          <img src="/vite.svg" />
+          <h3>iSwear</h3>
+        </div>
         <MdOutlineKeyboardArrowLeft
           className={styles.icoClose}
           onClick={toggleSide}
         />
       </div>
       <div className={styles.section2}>
-        <div className={styles.socBlock}>
+        {/* <div className={styles.socBlock}>
           {socLinks.map((social) => (
             <SocButton
               key={social.title}
@@ -102,7 +105,7 @@ const Sidebar = () => {
               icon={social.icon}
             />
           ))}
-        </div>
+        </div> */}
         <nav className={`${styles.pagesBlock}`}>
           {menuLinks.map((link) => (
             <NavLink

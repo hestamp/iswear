@@ -14,34 +14,6 @@ import {
 import { myReasons, staticMenu } from '../../../data/static'
 
 const GameClient = () => {
-  const lettersUkrainian =
-    "АаБбВвГгҐґДдЕеЄєЖжЗзИиІіЇїЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЬьЮюЯя'"
-
-  let interval = null
-  const handleMouseOver = (event) => {
-    let iteration = 0
-
-    clearInterval(interval)
-
-    interval = setInterval(() => {
-      event.target.innerText = event.target.innerText
-        .split('')
-        .map((letter, index) => {
-          if (index < iteration) {
-            return event.target.dataset.value[index]
-          }
-
-          return lettersUkrainian[Math.floor(Math.random() * 33)]
-        })
-        .join('')
-
-      if (iteration >= event.target.dataset.value.length) {
-        clearInterval(interval)
-      }
-
-      iteration += 1 / 3
-    }, 30)
-  }
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [roundNum, setRoundNum] = useState(1)
@@ -267,9 +239,7 @@ const GameClient = () => {
 
               {noTopic && <h3>Оберіть тему і почніть дебати!</h3>}
               {!noTopic && questArray && questArray.length ? (
-                <h2 onMouseOver={handleMouseOver} data-value={topicName}>
-                  {topicName}
-                </h2>
+                <h2 data-value={topicName}>{topicName}</h2>
               ) : !noTopic ? (
                 <h2>Теми закінчились</h2>
               ) : (

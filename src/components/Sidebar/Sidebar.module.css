@@ -102,15 +102,27 @@
   opacity: 1;
 }
 
-.socBlock {
-  position: relative;
-
-  margin: 1rem;
+.logoDiv {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+.logoDiv img {
+  width: 26px;
+}
+
+.socBlock {
+  position: relative;
+  border-bottom: 1px solid gray;
+  margin: 1rem 0;
+  padding: 1rem 0;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
   padding-top: 5px;
-  border-radius: 5px;
 }
 
 @media screen and (max-height: 600px) {
