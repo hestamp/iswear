@@ -1,10 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './GameClient.module.css'
-
 import { useDispatch, useSelector } from 'react-redux'
-import { uPageName } from '../../store/tempSlice'
+import { uPageColor, uPageName } from '../../store/tempSlice'
 import { useNavigate } from 'react-router-dom'
-
 import { PiUserSwitchBold } from 'react-icons/pi'
 import { TbSwitch2 } from 'react-icons/tb'
 import {
@@ -24,7 +22,6 @@ const GameClient = () => {
   const [noTopic, setNoTopic] = useState(true)
   const [isCard, setIsCard] = useState(false)
   const [activeSpeaker, setActiveSpeaker] = useState(1)
-
   const [seconds, setSeconds] = useState(60)
   const intervalRef = useRef(null)
   const audioRef = useRef(null)
@@ -64,13 +61,11 @@ const GameClient = () => {
   }
   const generateRandomReason = (notrandom) => {
     const randomIndex = Math.floor(Math.random() * myReasons.length)
-
     if (notrandom) {
       const updatedArray = [...questArray]
       updatedArray.splice(randomIndex, 1)
       dispatch(uQuestArray(updatedArray))
     }
-
     return myReasons[randomIndex]
   }
 
@@ -80,7 +75,6 @@ const GameClient = () => {
     if (!value && !val2) {
       navigate('/')
     }
-
     dispatch(uPageName('Дебати'))
   }, [])
   useEffect(() => {
@@ -91,6 +85,16 @@ const GameClient = () => {
       setCategoryName(topicObj.name)
     }
   }, [])
+
+  useEffect(() => {
+    if (isTimer && activeSpeaker == 1) {
+      dispatch(uPageColor('skyblue'))
+    } else if (isTimer && activeSpeaker == 2) {
+      dispatch(uPageColor('pink'))
+    } else {
+      dispatch(uPageColor('white'))
+    }
+  }, [activeSpeaker, isTimer])
 
   const getNewTopic = () => {
     const newTopic = generateRandomTopic(true)
@@ -112,7 +116,7 @@ const GameClient = () => {
   const finishTimer = () => {
     runRound()
     setIsTimer(false)
-    // playBeepFinish()
+    playBeepFinish()
     clearInterval(intervalRef.current)
     intervalRef.current = null
     setSeconds(60)
@@ -122,7 +126,6 @@ const GameClient = () => {
     if (seconds == 0) {
       finishTimer()
     }
-
     if (seconds < 3 && seconds != 0) {
       playBeep()
     }
@@ -131,10 +134,6 @@ const GameClient = () => {
   const runRound = () => {
     if (roundTurn < 3) {
       setRoundTurn((prev) => prev + 1)
-    } else if (roundTurn == 2) {
-      // setRoundTurn(0)
-      // getNewTopic()
-      // setRoundNum((prev) => prev + 1)
     }
   }
 
@@ -155,7 +154,9 @@ const GameClient = () => {
   }
 
   const nextPlayer = (num) => {
-    setActiveSpeaker(num)
+    if (!isTimer) {
+      setActiveSpeaker(num)
+    }
   }
 
   const switchNames = () => {

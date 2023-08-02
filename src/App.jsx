@@ -27,6 +27,7 @@ function App() {
     }
   }
   const { sidebar } = useSelector((state) => state.logic)
+  const { pageColor } = useSelector((state) => state.temp)
 
   useEffect(() => {
     const value = localStorage.getItem('username')
@@ -46,7 +47,11 @@ function App() {
       <div onClick={closeRest} className={styles.section1}>
         <NavBar />
       </div>
-      <div onClick={closeRest} className={styles.section2}>
+      <div
+        style={{ backgroundColor: pageColor }}
+        onClick={closeRest}
+        className={styles.section2}
+      >
         <Routes>
           {/* Main> */}
           <Route exact path="/" element={<MainPage />} />

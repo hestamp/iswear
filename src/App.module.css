@@ -18,9 +18,7 @@
 .section2 {
   flex: 12;
   width: 100%;
-  background-color: whitesmoke;
   border-top: 1px solid lightgray;
-
   display: flex;
   flex-direction: column;
   align-items: center;
