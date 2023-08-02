@@ -93,6 +93,16 @@ const Sidebar = () => {
         />
       </div>
       <div className={styles.section2}>
+        <div className={styles.socBlock}>
+          {socLinks.map((social) => (
+            <SocButton
+              key={social.title}
+              link={social.link}
+              title={social.title}
+              icon={social.icon}
+            />
+          ))}
+        </div>
         <nav className={`${styles.pagesBlock}`}>
           {menuLinks.map((link) => (
             <NavLink
@@ -119,18 +129,6 @@ const Sidebar = () => {
             </NavLink>
           ))}
         </nav>
-      </div>
-      <div className={styles.section3}>
-        <div className={styles.socBlock}>
-          {socLinks.map((social) => (
-            <SocButton
-              key={social.title}
-              link={social.link}
-              title={social.title}
-              icon={social.icon}
-            />
-          ))}
-        </div>
       </div>
     </div>
   )

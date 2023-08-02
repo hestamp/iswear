@@ -6,7 +6,7 @@
 }
 
 .section1 {
-  flex: 1;
+  flex: 8%;
   font-weight: 600;
   width: 100%;
   display: flex;
@@ -15,27 +15,9 @@
 }
 
 .section2 {
-  flex: 12;
+  flex: 92%;
   width: 100%;
-  border-top: 1px solid lightgray;
-  border-bottom: 1px solid lightgray;
-}
-
-.section3 {
-  flex: 1.5;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-@media (min-width: 1280px) {
-  .section1 {
-    flex: 1;
-  }
-  .section2 {
-    flex: 16;
-  }
+  border-top: 1px solid gray;
 }
 
 .ico0 {
@@ -121,7 +103,9 @@
 }
 
 .socBlock {
-  bottom: 0;
+  position: relative;
+
+  margin: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;

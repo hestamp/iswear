@@ -14,6 +14,34 @@ import {
 import { myReasons, staticMenu } from '../../../data/static'
 
 const GameClient = () => {
+  const lettersUkrainian =
+    "АаБбВвГгҐґДдЕеЄєЖжЗзИиІіЇїЙйКкЛлМмНнОоПпРрСсТтУуФфХхЦцЧчШшЩщЬьЮюЯя'"
+
+  let interval = null
+  const handleMouseOver = (event) => {
+    let iteration = 0
+
+    clearInterval(interval)
+
+    interval = setInterval(() => {
+      event.target.innerText = event.target.innerText
+        .split('')
+        .map((letter, index) => {
+          if (index < iteration) {
+            return event.target.dataset.value[index]
+          }
+
+          return lettersUkrainian[Math.floor(Math.random() * 33)]
+        })
+        .join('')
+
+      if (iteration >= event.target.dataset.value.length) {
+        clearInterval(interval)
+      }
+
+      iteration += 1 / 3
+    }, 30)
+  }
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [roundNum, setRoundNum] = useState(1)
@@ -25,7 +53,7 @@ const GameClient = () => {
   const [seconds, setSeconds] = useState(60)
   const intervalRef = useRef(null)
   const audioRef = useRef(null)
-  const audioFinishRef = useRef(null)
+
   const [topicName, setTopicName] = useState('')
   const [reasonName, setReasonName] = useState('')
   const [categoryName, setCategoryName] = useState('')
@@ -37,11 +65,6 @@ const GameClient = () => {
   const playBeep = () => {
     if (audioRef.current) {
       audioRef.current.play()
-    }
-  }
-  const playBeepFinish = () => {
-    if (audioFinishRef.current) {
-      audioFinishRef.current.play()
     }
   }
 
@@ -64,7 +87,6 @@ const GameClient = () => {
     if (notrandom) {
       const updatedArray = [...questArray]
       updatedArray.splice(randomIndex, 1)
-      dispatch(uQuestArray(updatedArray))
     }
     return myReasons[randomIndex]
   }
@@ -116,7 +138,7 @@ const GameClient = () => {
   const finishTimer = () => {
     runRound()
     setIsTimer(false)
-    playBeepFinish()
+    playBeep()
     clearInterval(intervalRef.current)
     intervalRef.current = null
     setSeconds(60)
@@ -127,6 +149,10 @@ const GameClient = () => {
       finishTimer()
     }
     if (seconds < 3 && seconds != 0) {
+      playBeep()
+    }
+
+    if (seconds == 10) {
       playBeep()
     }
   }, [seconds])
@@ -239,13 +265,11 @@ const GameClient = () => {
                 />
               </div>
 
-              {noTopic && (
-                <button onClick={getRandom} className={styles.myButt2}>
-                  Випадкова тема
-                </button>
-              )}
+              {noTopic && <h3>Оберіть тему і почніть дебати!</h3>}
               {!noTopic && questArray && questArray.length ? (
-                <h2>{topicName}</h2>
+                <h2 onMouseOver={handleMouseOver} data-value={topicName}>
+                  {topicName}
+                </h2>
               ) : !noTopic ? (
                 <h2>Теми закінчились</h2>
               ) : (
@@ -271,8 +295,7 @@ const GameClient = () => {
           <div className={styles.gameStatus}>
             {isTimer ? (
               <>
-                <h3>Раунд {roundNum}</h3>
-                <h1>{seconds}</h1>
+                <h1 className={styles.secondDiv}>{seconds}</h1>
               </>
             ) : (
               <div className={styles.posBlock}>
@@ -284,10 +307,12 @@ const GameClient = () => {
                   }}
                   className={styles.positionH}
                 >
+                  <h3>Раунд {roundNum}</h3>
+
                   <h3>
-                    Хід: {activeSpeaker == 1 ? `${userName}` : `${secondName}`}
+                    {activeSpeaker == 1 ? `${userName}` : `${secondName}`}:{' '}
+                    {activeSpeaker == 1 ? 'ЗА' : 'ПРОТИ'}
                   </h3>
-                  <h3>Позиція: {activeSpeaker == 1 ? 'ЗА' : 'ПРОТИ'}</h3>
                 </div>
               </div>
             )}
@@ -318,14 +343,20 @@ const GameClient = () => {
                   Наступна тема
                 </button>
               ) : (
-                <h3>Оберіть тему і почніть дебати!</h3>
+                <div className={styles.buttBlock}>
+                  <button onClick={getRandom} className={styles.myButt}>
+                    Випадкова
+                  </button>
+                  <button onClick={getRandom} className={styles.myButt}>
+                    Список
+                  </button>
+                </div>
               )}
             </div>
           )}
         </div>
       </div>
       <audio preload="auto" ref={audioRef} src="/beep.wav" />
-      <audio preload="auto" ref={audioFinishRef} src="/finish.wav" />
     </div>
   )
 }
