@@ -15,7 +15,7 @@ import ModePicker from './pages/ModePicker/ModePicker'
 import GameClient from './pages/GameClient/GameClient'
 import UserNames from './pages/UserNames/UserNames'
 import { useEffect } from 'react'
-import { uUserName } from './store/userPickSlice'
+import { uSecondName, uUserName } from './store/userPickSlice'
 import NavBar from './components/NavBar/Navbar'
 
 function App() {
@@ -32,6 +32,10 @@ function App() {
     const value = localStorage.getItem('username')
     if (value) {
       dispatch(uUserName(value))
+    }
+    const val2 = localStorage.getItem('secondname')
+    if (val2) {
+      dispatch(uSecondName(val2))
     }
   }, [])
   return (

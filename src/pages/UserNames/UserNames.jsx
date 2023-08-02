@@ -45,6 +45,7 @@ const UserNames = () => {
     e.preventDefault()
     if (firstName.length > 2 && twoName.length > 2) {
       localStorage.setItem('username', firstName)
+      localStorage.setItem('secondname', twoName)
       dispatch(uUserName(firstName))
       dispatch(uSecondName(twoName))
       navigate('/duo/params')

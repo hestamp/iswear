@@ -7,15 +7,24 @@ import { useNavigate } from 'react-router-dom'
 
 import { PiUserSwitchBold } from 'react-icons/pi'
 import { TbSwitch2 } from 'react-icons/tb'
-import { uQuestArray, uSecondName, uUserName } from '../../store/userPickSlice'
+import {
+  uQuestArray,
+  uSecondName,
+  uTopicObj,
+  uUserName,
+} from '../../store/userPickSlice'
+import { myReasons, staticMenu } from '../../../data/static'
 
 const GameClient = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
+  const [roundNum, setRoundNum] = useState(1)
+  const [roundTurn, setRoundTurn] = useState(1)
+  const [tipUsed, setTipUsed] = useState(false)
+  const [noTopic, setNoTopic] = useState(true)
   const [isCard, setIsCard] = useState(false)
   const [activeSpeaker, setActiveSpeaker] = useState(1)
-  const [upRound, setUpRound] = useState(0)
+
   const [seconds, setSeconds] = useState(60)
   const intervalRef = useRef(null)
   const audioRef = useRef(null)
@@ -40,6 +49,9 @@ const GameClient = () => {
   }
 
   const generateRandomTopic = (notrandom) => {
+    if (noTopic) {
+      setNoTopic(false)
+    }
     const randomIndex = Math.floor(Math.random() * questArray.length)
 
     if (notrandom) {
@@ -50,52 +62,65 @@ const GameClient = () => {
 
     return questArray[randomIndex]
   }
+  const generateRandomReason = (notrandom) => {
+    const randomIndex = Math.floor(Math.random() * myReasons.length)
 
-  useEffect(() => {
-    if (upRound == 1) {
-      setActiveSpeaker(1)
-    } else if (upRound == 2) {
-      setActiveSpeaker(2)
+    if (notrandom) {
+      const updatedArray = [...questArray]
+      updatedArray.splice(randomIndex, 1)
+      dispatch(uQuestArray(updatedArray))
     }
-  }, [upRound])
+
+    return myReasons[randomIndex]
+  }
 
   useEffect(() => {
-    if (!userName || !secondName) {
+    const value = localStorage.getItem('username')
+    const val2 = localStorage.getItem('secondname')
+    if (!value && !val2) {
       navigate('/')
     }
 
     dispatch(uPageName('Дебати'))
   }, [])
   useEffect(() => {
+    dispatch(uTopicObj(staticMenu[0]))
+    dispatch(uQuestArray(staticMenu[0].questions))
+    setCategoryName(staticMenu[0].name)
     if (topicObj) {
       setCategoryName(topicObj.name)
-
-      setReasonName('Прибульці')
-    }
-
-    if (questArray) {
-      getNewTopic()
     }
   }, [])
 
   const getNewTopic = () => {
     const newTopic = generateRandomTopic(true)
     setTopicName(newTopic)
+    setRoundNum((prev) => prev + 1)
+    setRoundTurn(1)
   }
   const getRandom = () => {
     const newTopic = generateRandomTopic()
     setTopicName(newTopic)
   }
-
-  const clickCard = () => {
+  const getRandomReason = () => {
     setIsCard((prev) => !prev)
+    const newReason = generateRandomReason()
+    setReasonName(newReason)
+    setSeconds((prevSeconds) => prevSeconds + 30)
+  }
+
+  const finishTimer = () => {
+    runRound()
+    setIsTimer(false)
+    // playBeepFinish()
+    clearInterval(intervalRef.current)
+    intervalRef.current = null
+    setSeconds(60)
   }
 
   useEffect(() => {
     if (seconds == 0) {
-      setIsTimer(false)
-      playBeepFinish()
-      setUpRound((prev) => prev + 1)
+      finishTimer()
     }
 
     if (seconds < 3 && seconds != 0) {
@@ -103,17 +128,17 @@ const GameClient = () => {
     }
   }, [seconds])
 
-  const startTimer = () => {
-    if (topicName == '') {
-      getNewTopic()
+  const runRound = () => {
+    if (roundTurn < 3) {
+      setRoundTurn((prev) => prev + 1)
+    } else if (roundTurn == 2) {
+      // setRoundTurn(0)
+      // getNewTopic()
+      // setRoundNum((prev) => prev + 1)
     }
-    if (upRound == 0) {
-      getNewTopic()
-    } else {
-      setUpRound(0)
-      getNewTopic()
-    }
+  }
 
+  const startTimer = () => {
     setIsTimer(true)
     setSeconds(60)
     if (intervalRef.current) return
@@ -126,14 +151,7 @@ const GameClient = () => {
 
   const add30Seconds = () => {
     setSeconds((prevSeconds) => prevSeconds + 30)
-  }
-
-  const resetTimer = () => {
-    clearInterval(intervalRef.current)
-    intervalRef.current = null
-    setSeconds(60)
-    setUpRound((prev) => prev + 1)
-    setIsTimer(false)
+    setTipUsed(true)
   }
 
   const nextPlayer = (num) => {
@@ -152,6 +170,16 @@ const GameClient = () => {
   }
 
   const truncatedTopicName = truncateTopicName(categoryName, 15)
+
+  useEffect(() => {
+    if (activeSpeaker == 1) {
+      setActiveSpeaker(2)
+    } else {
+      setActiveSpeaker(1)
+    }
+    setTipUsed(false)
+    setIsCard(false)
+  }, [roundTurn])
 
   return (
     <div
@@ -210,29 +238,41 @@ const GameClient = () => {
                 />
               </div>
 
-              {questArray && questArray.length ? (
+              {noTopic && (
+                <button onClick={getRandom} className={styles.myButt2}>
+                  Випадкова тема
+                </button>
+              )}
+              {!noTopic && questArray && questArray.length ? (
                 <h2>{topicName}</h2>
-              ) : (
+              ) : !noTopic ? (
                 <h2>Теми закінчились</h2>
+              ) : (
+                <></>
               )}
 
-              <div className={styles.reasonBlock}>
-                <h3>Причина:</h3>
-                {isCard ? (
-                  <h3 onClick={clickCard}>{reasonName}</h3>
-                ) : (
-                  <button className={styles.myButt2} onClick={clickCard}>
+              {!isCard ? (
+                <div className={styles.reasonBlock}>
+                  <h3>Причина:</h3>
+                  <button className={styles.myButt2} onClick={getRandomReason}>
                     Взяти
                   </button>
-                )}
-              </div>
+                </div>
+              ) : (
+                <div className={styles.reasonBlock}>
+                  <h3>{reasonName}</h3>
+                </div>
+              )}
             </div>
           </div>
         </div>
         <div className={styles.gameInfo}>
           <div className={styles.gameStatus}>
             {isTimer ? (
-              <h1>{seconds}</h1>
+              <>
+                <h3>Раунд {roundNum}</h3>
+                <h1>{seconds}</h1>
+              </>
             ) : (
               <div className={styles.posBlock}>
                 <div
@@ -255,21 +295,30 @@ const GameClient = () => {
         <div className={styles.gameInfo}>
           {isTimer ? (
             <div className={styles.buttBlock}>
-              <button onClick={add30Seconds} className={styles.myButt}>
+              <button
+                style={{ display: `${tipUsed ? 'none' : ''}` }}
+                onClick={add30Seconds}
+                className={styles.myButt}
+              >
                 +30с
               </button>
-              <button onClick={resetTimer} className={styles.myButt}>
+              <button onClick={finishTimer} className={styles.myButt}>
                 Завершити
               </button>
             </div>
           ) : (
             <div className={styles.buttBlock}>
-              <button onClick={startTimer} className={styles.myButt}>
-                Почати
-              </button>
-              <button onClick={getNewTopic} className={styles.myButt}>
-                Наступна тема
-              </button>
+              {topicName.length && roundTurn <= 2 ? (
+                <button onClick={startTimer} className={styles.myButt}>
+                  Почати раунд
+                </button>
+              ) : topicName.length && roundTurn > 2 ? (
+                <button onClick={getNewTopic} className={styles.myButt}>
+                  Наступна тема
+                </button>
+              ) : (
+                <h3>Оберіть тему і почніть дебати!</h3>
+              )}
             </div>
           )}
         </div>
