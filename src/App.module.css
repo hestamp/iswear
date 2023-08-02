@@ -7,17 +7,19 @@
 }
 
 .section1 {
-  flex: 1;
+  flex: 10%;
   font-weight: 600;
   width: 100%;
   display: flex;
+
   justify-content: center;
   align-items: center;
 }
 
 .section2 {
-  flex: 12;
+  flex: 90%;
   width: 100%;
+  height: auto;
   border-top: 1px solid lightgray;
   display: flex;
   flex-direction: column;
@@ -25,19 +27,12 @@
   overflow: auto;
 }
 
-.section3 {
-  flex: 1.5;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
 @media (min-width: 1280px) {
   .section1 {
     flex: 1;
   }
   .section2 {
-    flex: 16;
+    flex: 12;
   }
 }
 
