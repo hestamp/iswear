@@ -3,7 +3,7 @@ import styles from './MainPage.module.css'
 import { Link } from 'react-router-dom'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { uPageName } from '../../store/tempSlice'
+import { uPageColor, uPageName } from '../../store/tempSlice'
 import { categoriesArr, randomNames } from '../../../data/static'
 import { uPickedMode, uUserName } from '../../store/userPickSlice'
 
@@ -12,6 +12,7 @@ import { PiCheckFatFill } from 'react-icons/pi'
 import { MdOutlineClose, MdOutlineModeEdit } from 'react-icons/md'
 import MyInput from '../../components/Tools/MyInput/MyInput'
 import { FaRandom } from 'react-icons/fa'
+import MyButton from '../../components/Tools/MyButton/MyButton'
 
 const MainPage = () => {
   const dispatch = useDispatch()
@@ -42,6 +43,7 @@ const MainPage = () => {
       setSavedName(value)
       setTempUserName(value)
       dispatch(uUserName(value))
+      dispatch(uPageColor('#f7f8fa'))
     }
   }, [])
 
@@ -78,7 +80,7 @@ const MainPage = () => {
               <MyInput
                 rightIco={
                   <MdOutlineClose
-                    style={{ opacity: `${tempUserName.length}` }}
+                    style={{ opacity: `${tempUserName.length ? '1' : '0'}` }}
                     className={styles.closeIco}
                     onClick={() => clearInput(setTempUserName)}
                   />
@@ -97,11 +99,12 @@ const MainPage = () => {
                 bgcolor="white"
               />
 
-              <button onClick={saveName} className={styles.saveBtn}>
-                {' '}
-                <h3>Зберегти</h3>
-                <PiCheckFatFill />
-              </button>
+              <MyButton
+                onClick={saveName}
+                iconAlign="right"
+                text="Зберегти"
+                icon={PiCheckFatFill}
+              />
             </form>
           )}
         </div>
@@ -118,7 +121,9 @@ const MainPage = () => {
                     key={id}
                     to={`${item.active && userName ? `/${item.link}` : '/'}`}
                     onClick={() => checkUserName(item.link)}
-                    style={{ backgroundColor: `${!item.active && 'gray'}` }}
+                    style={{
+                      backgroundColor: `${!item.active && 'lightgray'}`,
+                    }}
                     className={styles.oneBlock}
                   >
                     {item.active && (

@@ -35,7 +35,7 @@
 
 .menuToggle:hover {
   background-color: lightgray;
-  color: black;
+  color: #3d4655;
   transition: 0.3s;
 }
 
@@ -62,7 +62,7 @@
 
 .userBar:hover {
   background-color: lightgray;
-  color: black;
+  color: #3d4655;
   transition: 0.3s;
 }
 

@@ -4,18 +4,16 @@
   display: flex;
   height: 100%;
   overflow: auto;
-  align-items: center;
   justify-content: center;
 }
 
 .mainPage {
-  margin: 1rem 0;
   gap: 1rem;
+  margin: 1rem;
   width: 100%;
   max-width: 95%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
@@ -126,7 +124,7 @@
 }
 
 .formSearch textarea:hover {
-  border: 2px solid black;
+  border: 2px solid #3d4655;
   transition: 0.3s;
 }
 
@@ -156,7 +154,7 @@
 
 .genButt:hover {
   transition: 0.3s;
-  border: 2px solid black;
+  border: 2px solid #3d4655;
   background: lightgray;
 }
 
@@ -182,7 +180,7 @@
 .categoryBlock {
   width: 100%;
   max-width: 95%;
-  border: 2px solid gray;
+  border: 1px solid lightgray;
   border-radius: 5px;
   background-color: white;
   display: flex;
@@ -200,7 +198,7 @@
 
 .seeAll {
   text-decoration: none;
-  color: black;
+  color: #3d4655;
   border: 1px solid gray;
   cursor: pointer;
   background-color: whitesmoke;
@@ -240,18 +238,22 @@
 .oneBlock {
   display: flex;
   text-decoration: none;
-  color: black;
+  color: #3d4655;
   height: 60px;
   justify-content: center;
   align-items: center;
   text-align: center;
-  border: 2px solid gray;
-
+  border: 1px solid lightgray;
   border-radius: 5px;
   background-color: whitesmoke;
   gap: 5px;
   cursor: pointer;
+  transition: 0.3s;
+}
 
+.oneBlock:hover {
+  border: 1px solid #3d4655;
+  background-color: lightgray;
   transition: 0.3s;
 }
 
@@ -261,12 +263,6 @@
   background-color: lightgray;
   width: 30px;
   height: 30px;
-}
-
-.oneBlock:hover {
-  border: 2px solid black;
-  background-color: lightgray;
-  transition: 0.3s;
 }
 
 .nameCount {
@@ -309,7 +305,7 @@
   background-color: whitesmoke;
   width: auto;
   display: flex;
-  color: black;
+  color: #3d4655;
   text-decoration: none;
   flex-direction: column;
   gap: 10px;
@@ -320,7 +316,7 @@
 
 .feedDiv:hover {
   background-color: lightgray;
-  border: 2px solid black;
+  border: 2px solid #3d4655;
   transition: 0.3s;
 }
 

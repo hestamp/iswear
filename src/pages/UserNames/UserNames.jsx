@@ -11,6 +11,7 @@ import { FaRandom } from 'react-icons/fa'
 import { randomNames } from '../../../data/static'
 import BackBar from '../../components/Tools/BackBar/BackBar'
 import MyInput from '../../components/Tools/MyInput/MyInput'
+import MyButton from '../../components/Tools/MyButton/MyButton'
 const UserNames = () => {
   const [firstName, setFirstName] = useState('')
   const [twoName, setTwoName] = useState('')
@@ -102,11 +103,13 @@ const UserNames = () => {
             bgcolor="white"
             value={twoName}
           />
-          <button type="submit" className={styles.saveBtn}>
-            {' '}
-            <h3>Зберегти</h3>
-            <PiCheckFatFill />
-          </button>
+
+          <MyButton
+            onClick={saveName}
+            iconAlign="right"
+            text="Зберегти"
+            icon={PiCheckFatFill}
+          />
         </form>
       </div>
     </div>

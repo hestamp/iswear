@@ -86,7 +86,7 @@ const GameClient = () => {
     } else if (isTimer && activeSpeaker == 2) {
       dispatch(uPageColor('pink'))
     } else {
-      dispatch(uPageColor('white'))
+      dispatch(uPageColor('#f7f8fa'))
     }
   }, [activeSpeaker, isTimer])
 
@@ -171,7 +171,7 @@ const GameClient = () => {
   const truncatedTopicName = truncateTopicName(categoryName, 15)
 
   useEffect(() => {
-    if (activeSpeaker == 1) {
+    if (activeSpeaker == 1 && !isTimer) {
       setActiveSpeaker(2)
     } else {
       setActiveSpeaker(1)
@@ -316,9 +316,6 @@ const GameClient = () => {
                 <div className={styles.buttBlock}>
                   <button onClick={getRandom} className={styles.myButt}>
                     Випадкова
-                  </button>
-                  <button onClick={getRandom} className={styles.myButt}>
-                    Список
                   </button>
                 </div>
               )}

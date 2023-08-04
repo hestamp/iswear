@@ -6,7 +6,7 @@
 }
 
 .section1 {
-  flex: 8%;
+  flex: 7%;
   font-weight: 600;
   width: 100%;
   display: flex;
@@ -15,9 +15,9 @@
 }
 
 .section2 {
-  flex: 92%;
+  flex: 93%;
   width: 100%;
-  border-top: 1px solid gray;
+  border-top: 1px solid lightgray;
 }
 
 .ico0 {
@@ -28,7 +28,7 @@
   width: 30px;
   height: 30px;
   cursor: pointer;
-  color: black;
+  color: #3d4655;
   transition: 0.3s;
 }
 .icoClose:hover {
@@ -57,7 +57,7 @@
 .normalLink:hover {
   background-color: lightgray;
   transition: 0.3s;
-  color: black;
+  color: #3d4655;
 }
 
 .activeLink {
@@ -68,7 +68,8 @@
   padding-left: 1.5rem;
   border-radius: 5px;
   margin: 5px;
-  color: black;
+  color: #3d4655;
+  background-color: lightgray;
   font-weight: 600;
   font-size: medium;
   text-decoration: none;
@@ -94,7 +95,7 @@
   border: 1px solid lightgray;
   padding: 5px;
   border-radius: 5px;
-  color: black;
+  color: #3d4655;
   opacity: 0.9;
   font-weight: 500;
 }
@@ -111,43 +112,4 @@
 }
 .logoDiv img {
   width: 26px;
-}
-
-.socBlock {
-  position: relative;
-  border-bottom: 1px solid gray;
-  margin: 1rem 0;
-  padding: 1rem 0;
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
-  padding-top: 5px;
-}
-
-@media screen and (max-height: 600px) {
-  .socBlock {
-    position: relative;
-    margin-bottom: 0;
-    margin-left: 0;
-    border-radius: 0px;
-  }
-}
-
-.socB {
-  padding: 5px 15px;
-}
-
-.socIcon {
-  width: 30px;
-  height: 30px;
-  opacity: 1;
-  color: black;
-  cursor: pointer;
-  transition: 0.33s;
-}
-
-.socIcon:hover {
-  opacity: 0.6;
-  transition: 0.33s;
 }

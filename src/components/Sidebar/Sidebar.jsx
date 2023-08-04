@@ -1,17 +1,13 @@
 import React from 'react'
 import styles from './Sidebar.module.css'
 import { uSidebar } from '../../store/logicSlice'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { MdOutlineKeyboardArrowLeft } from 'react-icons/md'
-import { TbSettings } from 'react-icons/tb'
 
-import { RiInformationLine } from 'react-icons/ri'
 import { PiPathBold } from 'react-icons/pi'
 import { GoProjectRoadmap } from 'react-icons/go'
 
-import { FaInstagram, FaPinterest, FaTwitter } from 'react-icons/fa'
-import MyTooltip from '../Tools/MyTooltip/MyTooltip'
 const menuLinks = [
   {
     name: 'Головна',
@@ -19,11 +15,11 @@ const menuLinks = [
     icon: <GoProjectRoadmap />,
   },
 
-  // {
-  //   name: 'Режими',
-  //   link: '/mypaths',
-  //   icon: <PiPathBold />,
-  // },
+  {
+    name: 'Режими',
+    link: '/mypaths',
+    icon: <PiPathBold />,
+  },
 
   // {
   //   name: 'Налаштування',
@@ -36,43 +32,6 @@ const menuLinks = [
   //   icon: <RiInformationLine />,
   // },
 ]
-
-const socLinks = [
-  {
-    title: 'Instagram',
-    link: 'https://www.instagram.com/tomhestamp/',
-    icon: FaInstagram,
-  },
-
-  {
-    title: 'Pinterest',
-    link: 'https://www.instagram.com/tomhestamp/',
-    icon: FaPinterest,
-  },
-  {
-    title: 'Twitter',
-    link: 'https://www.instagram.com/tomhestamp/',
-    icon: FaTwitter,
-  },
-]
-
-const emptyFunc = () => {}
-
-const SocButton = ({ title, icon: IconComponent, link }) => (
-  <MyTooltip
-    actFunc={emptyFunc}
-    insider={
-      <Link to={link} target="_blank" rel="noreferrer">
-        <div className={styles.socB}>
-          {' '}
-          <IconComponent className={styles.socIcon} />
-        </div>
-      </Link>
-    }
-    description={title}
-    duration={100}
-  />
-)
 
 const Sidebar = () => {
   const dispatch = useDispatch()
@@ -96,27 +55,11 @@ const Sidebar = () => {
         />
       </div>
       <div className={styles.section2}>
-        {/* <div className={styles.socBlock}>
-          {socLinks.map((social) => (
-            <SocButton
-              key={social.title}
-              link={social.link}
-              title={social.title}
-              icon={social.icon}
-            />
-          ))}
-        </div> */}
         <nav className={`${styles.pagesBlock}`}>
           {menuLinks.map((link) => (
             <NavLink
               key={link.name}
               to={link.link}
-              style={({ isActive }) => {
-                return {
-                  backgroundColor: isActive && 'gray',
-                  color: isActive && 'white',
-                }
-              }}
               onClick={toggleSide}
               className={({ isActive }) =>
                 isActive ? styles.activeLink : styles.normalLink
@@ -126,7 +69,7 @@ const Sidebar = () => {
                 {React.cloneElement(link.icon, {
                   className: styles.menuIcon,
                 })}
-                <span>{link.name}</span>
+                <h3>{link.name}</h3>
               </div>
               {link.new && <span className={styles.newDiv}>New</span>}
             </NavLink>

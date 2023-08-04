@@ -40,14 +40,18 @@ function App() {
     }
   }, [])
   return (
-    <div style={{ backgroundColor: pageColor }} className={styles.container}>
+    <div className={styles.container}>
       <div className={` ${sidebar ? styles.sidebarOpen : styles.sidebarClose}`}>
         <Sidebar />
       </div>
       <div onClick={closeRest} className={styles.section1}>
         <NavBar />
       </div>
-      <div onClick={closeRest} className={styles.section2}>
+      <div
+        style={{ backgroundColor: pageColor }}
+        onClick={closeRest}
+        className={styles.section2}
+      >
         <Routes>
           {/* Main> */}
           <Route exact path="/" element={<MainPage />} />

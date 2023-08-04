@@ -4,7 +4,7 @@ const tempSlice = createSlice({
   name: 'temp',
   initialState: {
     pageName: 'iSwear',
-    pageColor: 'white',
+    pageColor: '#f7f8fa',
   },
   reducers: {
     uPageName: (state, action) => {

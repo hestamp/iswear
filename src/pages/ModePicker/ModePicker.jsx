@@ -7,6 +7,7 @@ import { uSubMode } from '../../store/userPickSlice'
 
 import MySpinner from '../../components/Tools/MySpinner/MySpinner'
 import BackBar from '../../components/Tools/BackBar/BackBar'
+import MyButton from '../../components/Tools/MyButton/MyButton'
 
 const modeList = [
   {
@@ -67,14 +68,12 @@ const ModePicker = () => {
               <h3>{item.name}</h3>
               {expandedItem == item.myid && <p>{item.description}</p>}
               {expandedItem == item.myid && item.active ? (
-                <button
+                <MyButton
                   onClick={(event) => pickCategory(event, item)}
-                  className={styles.btnCategory}
-                >
-                  Обрати
-                </button>
+                  text="Обрати"
+                />
               ) : expandedItem == item.myid && !item.active ? (
-                <button className={styles.btnCategory}>В процесі</button>
+                <MyButton onClick={() => {}} text="Недоступно" />
               ) : (
                 <></>
               )}

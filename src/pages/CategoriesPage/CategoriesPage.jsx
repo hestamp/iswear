@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import { staticMenu } from '../../../data/static'
 import { uPickedTopic, uQuestArray, uTopicObj } from '../../store/userPickSlice'
 import BackBar from '../../components/Tools/BackBar/BackBar'
+import MyButton from '../../components/Tools/MyButton/MyButton'
 
 const CategoriesPage = () => {
   const navigate = useNavigate()
@@ -37,9 +38,10 @@ const CategoriesPage = () => {
   return (
     <div className={styles.allPage}>
       {expandedItem && (
-        <button onClick={runMode} className={styles.myButt}>
-          Обрати
-        </button>
+        <div className={styles.myDiv}>
+          {' '}
+          <MyButton className={styles.myButt} text="Обрати" onClick={runMode} />
+        </div>
       )}
       <div className={styles.categoriesPage}>
         <BackBar />
