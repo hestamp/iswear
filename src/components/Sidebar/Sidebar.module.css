@@ -17,6 +17,7 @@
 .section2 {
   flex: 93%;
   width: 100%;
+  background-color: whitesmoke;
   border-top: 1px solid lightgray;
 }
 

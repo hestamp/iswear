@@ -210,7 +210,7 @@ const GameClient = () => {
             {activeSpeaker == 1 && (
               <img className={styles.icoSvg} src="/vite.svg" />
             )}
-            <h3>{userName}</h3>
+            <h4>{userName}</h4>
           </div>
           <div
             onClick={() => nextPlayer(2)}
@@ -219,7 +219,7 @@ const GameClient = () => {
               activeSpeaker == 2 && styles.activeUser
             }`}
           >
-            <h3>{secondName}</h3>
+            <h4>{secondName}</h4>
             {activeSpeaker == 2 && (
               <img className={styles.icoSvg2} src="/vite.svg" />
             )}
@@ -231,12 +231,14 @@ const GameClient = () => {
             <div className={styles.cardBlock}>
               <div className={styles.buttAndName}>
                 <PiUserSwitchBold
+                  className={styles.icoSvg}
                   style={{ display: `${isTimer ? 'none' : ''}` }}
                   onClick={switchNames}
                 />
 
-                <h3 className={styles.topicName}> {truncatedTopicName}</h3>
+                <h4 className={styles.topicName}> {truncatedTopicName}</h4>
                 <TbSwitch2
+                  className={styles.icoSvg}
                   onClick={getRandom}
                   style={{ display: `${isTimer ? 'none' : ''}` }}
                 />
@@ -244,23 +246,23 @@ const GameClient = () => {
 
               {noTopic && <h3>Оберіть тему і почніть дебати!</h3>}
               {!noTopic && questArray && questArray.length ? (
-                <h2 data-value={topicName}>{topicName}</h2>
+                <h3 data-value={topicName}>{topicName}</h3>
               ) : !noTopic ? (
-                <h2>Теми закінчились</h2>
+                <h3>Теми закінчились</h3>
               ) : (
                 <></>
               )}
 
               {!isCard ? (
                 <div className={styles.reasonBlock}>
-                  <h3>Причина:</h3>
+                  <h4>Причина:</h4>
                   <button className={styles.myButt2} onClick={getRandomReason}>
                     Взяти
                   </button>
                 </div>
               ) : (
                 <div className={styles.reasonBlock}>
-                  <h3>{reasonName}</h3>
+                  <h4>{reasonName}</h4>
                 </div>
               )}
             </div>
@@ -282,12 +284,12 @@ const GameClient = () => {
                   }}
                   className={styles.positionH}
                 >
-                  <h3>Раунд {roundNum}</h3>
+                  <h4>Раунд {roundNum}</h4>
 
-                  <h3>
+                  <h4>
                     {activeSpeaker == 1 ? `${userName}` : `${secondName}`}:{' '}
                     {activeSpeaker == 1 ? 'ЗА' : 'ПРОТИ'}
-                  </h3>
+                  </h4>
                 </div>
               </div>
             )}

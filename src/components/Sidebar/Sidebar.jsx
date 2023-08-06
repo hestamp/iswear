@@ -47,7 +47,7 @@ const Sidebar = () => {
         />
         <div className={styles.logoDiv}>
           <img src="/vite.svg" />
-          <h3>iSwear</h3>
+          <h4>iSwear</h4>
         </div>
         <MdOutlineKeyboardArrowLeft
           className={styles.icoClose}
@@ -69,7 +69,7 @@ const Sidebar = () => {
                 {React.cloneElement(link.icon, {
                   className: styles.menuIcon,
                 })}
-                <h3>{link.name}</h3>
+                <h4>{link.name}</h4>
               </div>
               {link.new && <span className={styles.newDiv}>New</span>}
             </NavLink>

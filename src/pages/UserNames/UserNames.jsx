@@ -67,7 +67,7 @@ const UserNames = () => {
         <BackBar />
 
         <form onSubmit={saveName} className={styles.nameBlock}>
-          <h3>Гравець 1</h3>
+          <h4>Гравець 1</h4>
           <MyInput
             rightIco={
               <MdOutlineClose
@@ -89,7 +89,7 @@ const UserNames = () => {
             value={firstName}
             bgcolor="white"
           />
-          <h3>Гравець 2</h3>
+          <h4>Гравець 2</h4>
           <MyInput
             placeholder=""
             rightIco={

@@ -70,12 +70,12 @@ const MainPage = () => {
         <div className={styles.categoryBlock}>
           {savedName ? (
             <div className={styles.nameBlock1}>
-              <h3>Привіт, {userName}</h3>
+              <h4>Привіт, {userName}</h4>
               <MdOutlineModeEdit onClick={editName} />
             </div>
           ) : (
             <form onSubmit={saveName} className={styles.nameBlock}>
-              <h3>Вкажіть ім'я щоб розпочати</h3>
+              <h4>Вкажіть ім'я щоб розпочати</h4>
 
               <MyInput
                 rightIco={
@@ -111,7 +111,7 @@ const MainPage = () => {
         {savedName && (
           <nav role="navigation" className={styles.categoryBlock}>
             <div className={styles.nameCategory}>
-              <h3>Оберіть режим</h3>
+              <h4>Оберіть режим</h4>
             </div>
             <div className={styles.dayCarousel}>
               {categoriesArr &&
@@ -131,7 +131,7 @@ const MainPage = () => {
                     )}
 
                     <div className={styles.nameCount}>
-                      <h3 className={styles.dayTimeP}>{item.name}</h3>
+                      <h4 className={styles.dayTimeP}>{item.name}</h4>
                       {item.beta && <p>зроблю пізніше</p>}
                     </div>
                   </Link>

@@ -65,9 +65,10 @@ const ModePicker = () => {
             <div
               onClick={() => clickItem(item)}
               key={item.myid}
+              style={{ backgroundColor: `${!item.active && 'lightgray'}` }}
               className={styles.oneBlock}
             >
-              <h3>{item.name}</h3>
+              <h4>{item.name}</h4>
               {expandedItem == item.myid && <p>{item.description}</p>}
               {expandedItem == item.myid && item.active ? (
                 <MyButton

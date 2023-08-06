@@ -44,10 +44,10 @@
 }
 
 .icoSvg {
-  width: 30px;
+  width: 24px;
 }
 .icoSvg2 {
-  width: 30px;
+  width: 24px;
   transform: scaleX(-1);
 }
 
@@ -80,13 +80,22 @@
   border: 1px solid transparent;
 }
 
+.icoSvg {
+  color: gray;
+  transition: 0.3s;
+}
+.icoSvg:hover {
+  color: black;
+  transition: 0.3s;
+}
+
 .activeUser {
   border: 1px solid #3d4655;
 }
 
 .oneUser:hover {
   transition: 0.3s;
-  background-color: lightgray;
+  opacity: 0.8;
 }
 
 .gameInfo {
@@ -149,13 +158,13 @@
   background-color: #3d4655;
   border: 1px solid transparent;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   transition: 0.3s;
 }
 
 .myButt:hover {
   transition: 0.3s;
-  border: 2px solid #3d4655;
+  border: 1px solid #3d4655;
   color: #3d4655;
   background-color: lightgray;
 }
@@ -177,7 +186,7 @@
   background-color: gray;
   border: 1px solid transparent;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   transition: 0.3s;
 }
 

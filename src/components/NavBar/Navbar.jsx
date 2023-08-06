@@ -18,13 +18,13 @@ const NavBar = () => {
       <div className={styles.menuDiv}>
         <button onClick={toggleSide} className={styles.menuToggle}>
           <RiMenu2Fill className={styles.menuIco} />
-          <h3 className={styles.menuText}>Меню</h3>
+          <h4 className={styles.menuText}>Меню</h4>
         </button>
       </div>
-      <h3>{pageName}</h3>
+      <h4>{pageName}</h4>
       <div className={styles.profileDiv}>
         <button className={styles.userBar}>
-          <h3>Профіль</h3>
+          <h4>Профіль</h4>
           <FaRegUser className={styles.icoUser} />
         </button>
       </div>
