@@ -13,13 +13,7 @@ import MyInput from '../../components/Tools/MyInput/MyInput'
 import MyButton from '../../components/Tools/MyButton/MyButton'
 import { useNavigate } from 'react-router-dom'
 
-const arrayList = [
-  'Питання або тема 1',
-  'Питання або тема 2',
-  'Питання або тема 3',
-  'Питання або тема 4',
-  'Питання або тема 5',
-]
+const arrayList = []
 
 const customTopicsArr = {
   name: 'Свої теми',
