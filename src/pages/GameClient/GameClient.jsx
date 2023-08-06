@@ -72,10 +72,15 @@ const GameClient = () => {
     dispatch(uPageName('Дебати'))
   }, [])
   useEffect(() => {
-    dispatch(uTopicObj(staticMenu[0]))
-    dispatch(uQuestArray(staticMenu[0].questions))
-    setCategoryName(staticMenu[0].name)
-    if (topicObj) {
+    if (!topicObj) {
+      dispatch(uTopicObj(staticMenu[0]))
+      dispatch(uQuestArray(staticMenu[0].questions))
+      setCategoryName(staticMenu[0].name)
+      if (topicObj) {
+        setCategoryName(topicObj.name)
+      }
+    } else {
+      dispatch(uQuestArray(topicObj.questions))
       setCategoryName(topicObj.name)
     }
   }, [])

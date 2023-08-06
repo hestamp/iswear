@@ -17,6 +17,7 @@ import UserNames from './pages/UserNames/UserNames'
 import { useEffect } from 'react'
 import { uSecondName, uUserName } from './store/userPickSlice'
 import NavBar from './components/NavBar/Navbar'
+import CustomPage from './pages/CustomPage/CustomPage'
 
 function App() {
   const dispatch = useDispatch()
@@ -60,6 +61,7 @@ function App() {
           <Route path="/duo" element={<ModePicker />} />
           <Route path="/duo/names" element={<UserNames />} />
           <Route path="/duo/params" element={<CategoriesPage />} />
+          <Route path="/duo/custom" element={<CustomPage />} />
 
           <Route exact path="/settings" element={<Settings />} />
           <Route exact path="/about" element={<AboutPage />} />

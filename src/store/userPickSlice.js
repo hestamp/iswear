@@ -10,6 +10,7 @@ const userPickSlice = createSlice({
     subMode: null,
     topicObj: null,
     questArray: null,
+    customTopics: [],
   },
   reducers: {
     uPickedMode: (state, action) => {
@@ -34,6 +35,9 @@ const userPickSlice = createSlice({
     uQuestArray: (state, action) => {
       state.questArray = action.payload
     },
+    uCustomTopics: (state, action) => {
+      state.customTopics = action.payload
+    },
   },
 })
 
@@ -45,5 +49,6 @@ export const {
   uSecondName,
   uTopicObj,
   uQuestArray,
+  uCustomTopics,
 } = userPickSlice.actions
 export default userPickSlice.reducer

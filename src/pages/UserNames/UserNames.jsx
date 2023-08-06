@@ -17,7 +17,9 @@ const UserNames = () => {
   const [twoName, setTwoName] = useState('')
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { userName, secondName } = useSelector((state) => state.userPick)
+  const { userName, secondName, subMode } = useSelector(
+    (state) => state.userPick
+  )
 
   useEffect(() => {
     if (userName) {
@@ -49,7 +51,13 @@ const UserNames = () => {
       localStorage.setItem('secondname', twoName)
       dispatch(uUserName(firstName))
       dispatch(uSecondName(twoName))
-      navigate('/duo/params')
+      if (subMode == 'classic') {
+        navigate('/duo/params')
+      } else if (subMode == 'custom') {
+        navigate('/duo/custom')
+      } else {
+        navigate('/')
+      }
     }
   }
 
@@ -71,7 +79,7 @@ const UserNames = () => {
             leftIco={
               <FaRandom
                 onClick={() => getName(setFirstName)}
-                className={styles.closeIco}
+                className={styles.closeIco2}
               />
             }
             placeholder=""
@@ -94,7 +102,7 @@ const UserNames = () => {
             leftIco={
               <FaRandom
                 onClick={() => getName(setTwoName)}
-                className={styles.closeIco}
+                className={styles.closeIco2}
               />
             }
             setFunc={setTwoName}
