@@ -35,11 +35,24 @@
   width: 24px;
   height: 24px;
   cursor: pointer;
+  transition: 0.3s;
+  color: gray;
 }
 .addIco {
   width: 30px;
   height: 30px;
   cursor: pointer;
+  transition: 0.3s;
+  color: gray;
+}
+
+.closeIco:hover {
+  transition: 0.3s;
+  color: black;
+}
+.addIco:hover {
+  transition: 0.3s;
+  color: black;
 }
 
 .signNumb {
