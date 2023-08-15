@@ -72,13 +72,8 @@ const CustomPage = () => {
         <BackBar />
         <h4 className={styles.mainLabel}>Придумай цікаву тему:</h4>
         <MyInput
-          rightIco={
-            <MdOutlineClose
-              style={{ display: `${topicName.length ? '' : 'none'}` }}
-              className={styles.closeIco}
-              onClick={clearInput}
-            />
-          }
+          rightIco
+          rightFunc={clearInput}
           leftIco={
             <MdAddCircleOutline
               style={{ display: `${topicName.length > 5 ? '' : 'none'}` }}

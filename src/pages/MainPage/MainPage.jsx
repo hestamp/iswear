@@ -20,7 +20,7 @@ const MainPage = () => {
   const { userName } = useSelector((state) => state.userPick)
 
   useEffect(() => {
-    dispatch(uPageName('iSwear'))
+    dispatch(uPageName('ProveIt'))
   }, [])
 
   const checkUserName = (link) => {
@@ -67,6 +67,7 @@ const MainPage = () => {
   return (
     <div className={styles.allPage}>
       <div className={styles.mainPage}>
+        <h3>ProveIt.Fun</h3>
         <div className={styles.categoryBlock}>
           {savedName ? (
             <div className={styles.nameBlock1}>
@@ -78,22 +79,12 @@ const MainPage = () => {
               <h4>Вкажіть ім'я щоб розпочати</h4>
 
               <MyInput
-                rightIco={
-                  <MdOutlineClose
-                    style={{ opacity: `${tempUserName.length ? '1' : '0'}` }}
-                    className={styles.closeIco}
-                    onClick={() => clearInput(setTempUserName)}
-                  />
-                }
-                leftIco={
-                  <FaRandom
-                    onClick={() => getName(setTempUserName)}
-                    className={styles.closeIco}
-                  />
-                }
+                rightIco
+                rightFunc={clearInput}
+                leftIco={<FaRandom onClick={() => getName(setTempUserName)} />}
                 placeholder="прояви фантазію"
                 setFunc={setTempUserName}
-                maxLength={10}
+                maxLength={11}
                 minLength={3}
                 value={tempUserName}
                 bgcolor="white"

@@ -67,50 +67,43 @@ const UserNames = () => {
         <BackBar />
 
         <form onSubmit={saveName} className={styles.nameBlock}>
-          <h4>Гравець 1</h4>
-          <MyInput
-            rightIco={
-              <MdOutlineClose
-                style={{ opacity: `${firstName.length}` }}
-                className={styles.closeIco}
-                onClick={() => clearInput(setFirstName)}
-              />
-            }
-            leftIco={
-              <FaRandom
-                onClick={() => getName(setFirstName)}
-                className={styles.closeIco2}
-              />
-            }
-            placeholder=""
-            setFunc={setFirstName}
-            maxLength={10}
-            minLength={3}
-            value={firstName}
-            bgcolor="white"
-          />
-          <h4>Гравець 2</h4>
-          <MyInput
-            placeholder=""
-            rightIco={
-              <MdOutlineClose
-                style={{ opacity: `${twoName.length}` }}
-                className={styles.closeIco}
-                onClick={() => clearInput(setTwoName)}
-              />
-            }
-            leftIco={
-              <FaRandom
-                onClick={() => getName(setTwoName)}
-                className={styles.closeIco2}
-              />
-            }
-            setFunc={setTwoName}
-            maxLength={10}
-            minLength={3}
-            bgcolor="white"
-            value={twoName}
-          />
+          <div className={styles.onePlayer}>
+            <h4>Гравець 1</h4>
+            <MyInput
+              rightIco
+              rightOpacity={firstName.length}
+              rightFunc={() => clearInput(setFirstName)}
+              leftFunc={() => getName(setFirstName)}
+              leftIco={<FaRandom />}
+              placeholder="місце для фантазії"
+              setFunc={setFirstName}
+              maxLength={11}
+              minLength={3}
+              value={firstName}
+              bgcolor="white"
+            />
+          </div>
+
+          <div className={styles.onePlayer}>
+            <h4>Гравець 2</h4>
+            <MyInput
+              placeholder="місце для фантазії"
+              rightOpacity={twoName.length}
+              rightIco
+              rightFunc={() => clearInput(setTwoName)}
+              leftIco={
+                <FaRandom
+                  onClick={() => getName(setTwoName)}
+                  className={styles.closeIco2}
+                />
+              }
+              setFunc={setTwoName}
+              maxLength={11}
+              minLength={3}
+              bgcolor="white"
+              value={twoName}
+            />
+          </div>
 
           <MyButton
             onClick={saveName}

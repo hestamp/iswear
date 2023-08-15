@@ -1,6 +1,8 @@
 .allPage {
   width: 100%;
   max-width: 700px;
+  margin: 0;
+  padding: 0;
   display: flex;
   height: 100%;
   overflow: auto;
@@ -11,14 +13,26 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 95%;
+
   align-items: center;
+}
+
+.onePlayer {
+  width: 100%;
+  max-width: 400px;
+  border-bottom: 1px solid lightgray;
 }
 
 .nameBlock {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  gap: 1rem;
+}
+
+.onePlayer h4 {
+  text-align: right;
 }
 
 .inputDiv {

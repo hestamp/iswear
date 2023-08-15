@@ -47,7 +47,7 @@ const Sidebar = () => {
         />
         <div className={styles.logoDiv}>
           <img src="/vite.svg" />
-          <h4>iSwear</h4>
+          <h3>ProveIt</h3>
         </div>
         <MdOutlineKeyboardArrowLeft
           className={styles.icoClose}

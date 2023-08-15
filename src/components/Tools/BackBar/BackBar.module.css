@@ -1,24 +1,28 @@
 .backBar {
-  width: calc(100% - 10px);
-  padding: 0 10px;
-  margin: 0.5rem;
+  width: 100%;
   display: flex;
-  justify-content: left;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  text-align: center;
+  align-items: center;
+
+  margin-bottom: 0.5rem;
 }
 
-.backBar h4 {
+.myButt:hover {
+  color: gray;
+  transition: 0.3s;
+}
+
+.myButt {
+  width: 80px;
+  color: gray;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   transition: 0.3s;
 }
-
-.backBar h4:hover {
-  color: gray;
-  transition: 0.3s;
-}
-
 .backBar svg {
   width: 30px;
   height: 30px;

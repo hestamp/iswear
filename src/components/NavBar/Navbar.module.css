@@ -1,9 +1,19 @@
 .navDiv {
   position: relative;
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+}
+
+.soText {
+}
+
+@media (max-width: 700px) {
+  .soText {
+    opacity: 0;
+    display: none;
+  }
 }
 
 .navDiv h3 {

@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const tempSlice = createSlice({
   name: 'temp',
   initialState: {
-    pageName: 'iSwear',
+    pageName: 'ProveIt',
     pageColor: '#f7f8fa',
   },
   reducers: {

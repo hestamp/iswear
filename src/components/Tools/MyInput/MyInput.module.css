@@ -1,4 +1,5 @@
 .inputDiv {
+  position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -8,7 +9,6 @@
 }
 
 .inputDiv input {
-  position: relative;
   width: 100%;
   padding: 10px 5px;
   text-align: center;
@@ -16,4 +16,30 @@
   font-weight: 600;
   font-size: 16px;
   border: 1px solid lightgray;
+}
+
+.inputIconLeft {
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-50%);
+}
+
+.inputIconLeft svg {
+  width: 18px;
+  height: 18px;
+}
+.inputIconRight {
+  position: absolute;
+  right: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  transform: translateY(-50%);
 }

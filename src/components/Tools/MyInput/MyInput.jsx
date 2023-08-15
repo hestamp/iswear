@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './MyInput.module.css'
+import { MdOutlineBackspace } from 'react-icons/md'
 const MyInput = ({
   placeholder,
   setFunc,
@@ -9,10 +10,12 @@ const MyInput = ({
   bgcolor,
   leftIco,
   rightIco,
+  rightFunc,
+  rightOpacity,
+  leftFunc,
 }) => {
   return (
     <div className={styles.inputDiv}>
-      {leftIco && leftIco}
       <input
         style={{ backgroundColor: bgcolor }}
         placeholder={placeholder}
@@ -22,7 +25,19 @@ const MyInput = ({
         minLength={minLength}
         type="text"
       />
-      {rightIco && rightIco}
+      {leftIco && (
+        <div onClick={leftFunc} className={styles.inputIconLeft}>
+          {leftIco}
+        </div>
+      )}
+
+      {rightIco && (
+        <MdOutlineBackspace
+          style={{ opacity: `${rightOpacity}` }}
+          className={styles.inputIconRight}
+          onClick={rightFunc}
+        />
+      )}
     </div>
   )
 }
