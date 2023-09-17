@@ -29,6 +29,7 @@ const modeList = [
     name: 'Випадковий',
     description: 'Ви отримуєте тему, причини і сторони абсолютно випадково',
     myid: 'random',
+    active: true,
   },
 ]
 const ModePicker = () => {

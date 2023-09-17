@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './Sidebar.module.css'
 import { uSidebar } from '../../store/logicSlice'
 import { NavLink } from 'react-router-dom'
@@ -7,6 +7,7 @@ import { MdOutlineKeyboardArrowLeft } from 'react-icons/md'
 
 import { PiPathBold } from 'react-icons/pi'
 import { GoProjectRoadmap } from 'react-icons/go'
+import { ThemeContext } from '../../context/ThemeContext'
 
 const menuLinks = [
   {
@@ -15,11 +16,11 @@ const menuLinks = [
     icon: <GoProjectRoadmap />,
   },
 
-  {
-    name: 'Режими',
-    link: '/mypaths',
-    icon: <PiPathBold />,
-  },
+  // {
+  //   name: 'Режими',
+  //   link: '/mypaths',
+  //   icon: <PiPathBold />,
+  // },
 
   // {
   //   name: 'Налаштування',
@@ -34,12 +35,17 @@ const menuLinks = [
 ]
 
 const Sidebar = () => {
+  const { themeMode } = useContext(ThemeContext)
   const dispatch = useDispatch()
   const toggleSide = () => {
     dispatch(uSidebar(false))
   }
   return (
-    <div className={styles.mainSide}>
+    <div
+      className={`${styles.mainSide} ${
+        themeMode == 'light' ? styles.light : styles.dark
+      }`}
+    >
       <div className={styles.section1}>
         <MdOutlineKeyboardArrowLeft
           className={styles.ico0}

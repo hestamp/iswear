@@ -1,22 +1,27 @@
-import React from 'react'
+'use client'
+
+import React, { useContext } from 'react'
 import styles from './MyTooltip.module.css'
 
 import * as Tooltip from '@radix-ui/react-tooltip'
 
-const MyTooltip = ({ insider, description, actFunc, duration }) => {
+import { ThemeContext } from '../../../context/ThemeContext'
+
+const MyTooltip = ({ children, description, duration, position, side }) => {
+  const { themeMode } = useContext(ThemeContext)
   return (
     <Tooltip.Provider>
       <Tooltip.Root delayDuration={duration}>
         <Tooltip.Trigger asChild>
-          <div onClick={actFunc} className={styles.IconButton}>
-            {insider}
-          </div>
+          <div className={styles.IconButton}>{children}</div>
         </Tooltip.Trigger>
         <Tooltip.Portal>
           <Tooltip.Content
-            side="bottom"
-            className={styles.TooltipContent}
-            sideOffset={5}
+            side={position || 'top'}
+            className={`${styles.TooltipContent} ${
+              themeMode == 'light' ? styles.light : styles.dark
+            }`}
+            sideOffset={side || 6}
           >
             {description}
           </Tooltip.Content>

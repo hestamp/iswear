@@ -11,7 +11,7 @@ import {
   uTopicObj,
   uUserName,
 } from '../../store/userPickSlice'
-import { myReasons, staticMenu } from '../../../data/static'
+import { allTopics, myReasons, staticMenu } from '../../../data/static'
 
 const GameClient = () => {
   const dispatch = useDispatch()
@@ -30,7 +30,7 @@ const GameClient = () => {
   const [reasonName, setReasonName] = useState('')
   const [categoryName, setCategoryName] = useState('')
   const [isTimer, setIsTimer] = useState(false)
-  const { userName, secondName, topicObj, questArray } = useSelector(
+  const { userName, secondName, topicObj, questArray, subMode } = useSelector(
     (state) => state.userPick
   )
 
@@ -72,13 +72,16 @@ const GameClient = () => {
     dispatch(uPageName('Дебати'))
   }, [])
   useEffect(() => {
-    if (!topicObj) {
+    if (!topicObj && subMode == null) {
       dispatch(uTopicObj(staticMenu[0]))
       dispatch(uQuestArray(staticMenu[0].questions))
       setCategoryName(staticMenu[0].name)
       if (topicObj) {
         setCategoryName(topicObj.name)
       }
+    } else if (!topicObj && subMode == 'random') {
+      dispatch(uQuestArray(allTopics))
+      setCategoryName('Випадкові')
     } else {
       dispatch(uQuestArray(topicObj.questions))
       setCategoryName(topicObj.name)
@@ -330,7 +333,6 @@ const GameClient = () => {
           )}
         </div>
       </div>
-      <audio preload="auto" ref={audioRef} src="/beep.wav" />
     </div>
   )
 }

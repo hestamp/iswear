@@ -1,0 +1,150 @@
+/* InfiniteSpace.module.css */
+.allBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.bgbox {
+  height: 100%;
+  width: 100%;
+  z-index: 3;
+  overflow: hidden;
+  transition: transform 3s ease;
+  position: relative;
+}
+
+.spaceWrapper {
+  width: 300%;
+  height: 100%;
+  display: flex;
+  animation: moveSpaceWrapper 20s linear infinite;
+}
+
+.spaceImg {
+  width: 50%;
+}
+
+@keyframes moveSpaceWrapper {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+@keyframes moveEarth {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.earthBox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 6;
+  transition: 1s;
+  width: 333px;
+  border: 1px solid #8f8f8f6b;
+  height: 333px;
+  border-radius: 50%;
+}
+
+@media (max-width: 600px) {
+  .earthBox {
+    width: 222px;
+
+    height: 222px;
+  }
+}
+.earthDiv::before,
+.earthDiv::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.earthDiv::before {
+  left: 0;
+  z-index: 99;
+  width: 50%;
+  background: linear-gradient(to left, transparent, rgba(0, 0, 0, 0.9));
+}
+.earthDiv::after {
+  right: 0;
+  width: 50%;
+  background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.2));
+}
+
+.earthDiv::after {
+  right: 0;
+  transform: scaleX(-1); /* Reverse the gradient direction for ::after */
+}
+
+.earthDiv {
+  width: 100%;
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: 0 0 60px rgba(255, 255, 255, 0.44);
+  overflow: hidden;
+  position: relative;
+}
+
+.disdiv {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  animation: moveEarth 22s linear infinite;
+}
+
+.earthDiv img {
+  width: 150%;
+  height: 100%;
+}
+
+.earthText {
+  position: absolute;
+  top: 30px;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  z-index: 11111;
+}
+.earthButt {
+  position: absolute;
+  bottom: 30px;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  z-index: 11111;
+}
+
+.earthText:hover {
+  opacity: 0.66;
+  transition: 0.3s;
+}
+.earthDiv:hover {
+  transform: scale(1.1);
+  transition: 1s;
+}
+.earthButt:hover {
+  opacity: 0.66;
+  transition: 0.3s;
+}

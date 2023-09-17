@@ -67,7 +67,7 @@ const MainPage = () => {
   return (
     <div className={styles.allPage}>
       <div className={styles.mainPage}>
-        <h3>ProveIt.Fun</h3>
+        {/* <h4 className={styles.headerMe}>ProveIt.Fun</h4> */}
         <div className={styles.categoryBlock}>
           {savedName ? (
             <div className={styles.nameBlock1}>

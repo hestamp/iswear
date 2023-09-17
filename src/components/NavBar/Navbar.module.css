@@ -6,14 +6,11 @@
   align-items: center;
 }
 
-.soText {
+.light {
+  color: black;
 }
-
-@media (max-width: 700px) {
-  .soText {
-    opacity: 0;
-    display: none;
-  }
+.dark {
+  color: white;
 }
 
 .navDiv h3 {
@@ -31,7 +28,6 @@
 
 .menuToggle {
   position: relative;
-  left: 20px;
   z-index: 1;
   display: flex;
   align-items: center;
@@ -86,7 +82,19 @@
   cursor: pointer;
 }
 
-@media (max-width: 500px) {
+.icon {
+  width: 22px;
+  height: 22px;
+}
+
+@media (min-height: 800px) {
+  .icon {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+@media (max-width: 600px) {
   .userBar {
     right: 10px;
   }
@@ -104,4 +112,9 @@
   .section3 {
     display: none;
   }
+}
+
+.icon:hover {
+  transition: 0.3s;
+  opacity: 0.66;
 }

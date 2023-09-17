@@ -3,6 +3,7 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
+  color: inherit;
 }
 
 .section1 {
@@ -17,8 +18,6 @@
 .section2 {
   flex: 93%;
   width: 100%;
-  background-color: whitesmoke;
-  border-top: 1px solid lightgray;
 }
 
 .ico0 {
@@ -29,11 +28,9 @@
   width: 30px;
   height: 30px;
   cursor: pointer;
-  color: #3d4655;
   transition: 0.3s;
 }
 .icoClose:hover {
-  color: lightgray;
   transition: 0.3s;
 }
 
@@ -58,7 +55,6 @@
 .normalLink:hover {
   background-color: lightgray;
   transition: 0.3s;
-  color: #3d4655;
 }
 
 .activeLink {
@@ -92,11 +88,10 @@
 }
 
 .newDiv {
-  background-color: white;
   border: 1px solid lightgray;
   padding: 5px;
   border-radius: 5px;
-  color: #3d4655;
+
   opacity: 0.9;
   font-weight: 500;
 }
@@ -113,4 +108,15 @@
 }
 .logoDiv img {
   width: 26px;
+}
+
+.light {
+  background-color: #ffffff;
+  color: #353849;
+  border: 1px solid #90909010;
+}
+.dark {
+  background-color: #212121;
+  color: #ffffff;
+  border: 1px solid #2c2c2c;
 }

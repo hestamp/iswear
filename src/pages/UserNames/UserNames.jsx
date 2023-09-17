@@ -55,6 +55,8 @@ const UserNames = () => {
         navigate('/duo/params')
       } else if (subMode == 'custom') {
         navigate('/duo/custom')
+      } else if (subMode == 'random') {
+        navigate('/game/random')
       } else {
         navigate('/')
       }

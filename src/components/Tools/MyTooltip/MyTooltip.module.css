@@ -1,15 +1,16 @@
 .TooltipContent {
-  border-radius: 3px;
+  border-radius: 6px;
   width: auto;
-  max-width: 100px;
-  padding: 6px;
+  max-width: 200px;
+  padding: 3px 6px;
   z-index: 10000;
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 500;
   line-height: 1;
   letter-spacing: 0;
   color: white;
   display: flex;
-  background-color: #606060;
+  background-color: gray;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -18,6 +19,15 @@
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
 }
+.light {
+  color: black;
+  background-color: #ffffff;
+}
+.dark {
+  color: white;
+  background-color: #212121;
+}
+
 .TooltipContent[data-state='delayed-open'][data-side='top'] {
   animation-name: slideDownAndFade;
 }
