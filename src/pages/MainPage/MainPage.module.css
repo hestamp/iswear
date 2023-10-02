@@ -3,8 +3,6 @@
   max-width: 700px;
   display: flex;
   height: 100%;
-  overflow: auto;
-  justify-content: center;
 }
 
 .mainPage {
@@ -115,13 +113,6 @@
   gap: 5px;
 }
 
-.formSearch p {
-  font-size: 14px;
-}
-.formSearch label {
-  font-size: 12px;
-}
-
 .formSearch textarea {
   min-width: 100%;
   width: 100%;
@@ -191,9 +182,8 @@
 .categoryBlock {
   width: 100%;
   max-width: 95%;
-  border: 1px solid lightgray;
   border-radius: 5px;
-  background-color: white;
+  background-color: var(--sideBg);
   display: flex;
   flex-direction: column;
   padding: 15px 10px;
@@ -209,7 +199,7 @@
 
 .seeAll {
   text-decoration: none;
-  color: #3d4655;
+
   border: 1px solid gray;
   cursor: pointer;
   background-color: whitesmoke;
@@ -234,6 +224,12 @@
   padding-bottom: 5px;
   transition: 0.3s;
   max-width: 100%;
+  gap: 1rem;
+}
+
+.flexIco {
+  display: flex;
+  align-items: center;
   gap: 10px;
 }
 
@@ -249,29 +245,56 @@
 .oneBlock {
   display: flex;
   text-decoration: none;
-  color: #3d4655;
-  height: 50px;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 8px;
   text-align: center;
-  border: 1px solid lightgray;
+  box-shadow: var(--boxShadow);
+  border: 1px solid transparent;
   border-radius: 5px;
-  background-color: whitesmoke;
+  color: var(--textColor);
+  background-color: var(--sideBg);
+  background-color: var(--bgSecond);
   gap: 5px;
   cursor: pointer;
   transition: 0.3s;
 }
 
+.oneText {
+  display: flex;
+  text-decoration: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  text-align: left;
+
+  box-shadow: var(--boxShadow);
+  border: 1px solid #80808020;
+  border-radius: 5px;
+  color: var(--textColor);
+
+  background-color: var(--sideBg);
+  gap: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.notActive {
+  color: var(--sideBg);
+  background-color: var(--textColor);
+}
+
 .oneBlock:hover {
-  border: 1px solid #3d4655;
-  background-color: lightgray;
+  border: 1px solid #8080806e;
   transition: 0.3s;
 }
 
 .icoMode {
   border: 1px solid gray;
   border-radius: 100%;
-  background-color: lightgray;
+  background-color: gray;
   width: 30px;
   height: 30px;
 }
@@ -280,11 +303,6 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-}
-
-.oneBlock p {
-  font-size: 12px;
-  font-weight: 500;
 }
 
 .feedBlock {
@@ -316,7 +334,7 @@
   background-color: whitesmoke;
   width: auto;
   display: flex;
-  color: #3d4655;
+
   text-decoration: none;
   flex-direction: column;
   gap: 10px;

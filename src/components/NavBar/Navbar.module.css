@@ -6,11 +6,8 @@
   align-items: center;
 }
 
-.light {
-  color: black;
-}
-.dark {
-  color: white;
+.themetoggle {
+  color: var(--textColor);
 }
 
 .navDiv h3 {

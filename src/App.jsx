@@ -20,7 +20,6 @@ import NavBar from './components/NavBar/Navbar'
 import CustomPage from './pages/CustomPage/CustomPage'
 import { ThemeProvider } from './context/ThemeContext'
 import PageBlock from './components/PageBlock/PageBlock'
-import InfiniteSpace from './pages/InfiniteSpace/InfiniteSpace'
 
 function App() {
   const dispatch = useDispatch()
@@ -30,8 +29,8 @@ function App() {
       dispatch(uSidebar(false))
     }
   }
+
   const { sidebar } = useSelector((state) => state.logic)
-  const { pageColor } = useSelector((state) => state.temp)
 
   useEffect(() => {
     const value = localStorage.getItem('username')
@@ -55,18 +54,11 @@ function App() {
           <div onClick={closeRest} className={styles.section1}>
             <NavBar />
           </div>
-          {/* <div
-            style={{ backgroundColor: pageColor }}
-            onClick={closeRest}
-            className={styles.section2}
-          >
-            
-          </div> */}
+
           <PageBlock>
             <Routes>
               {/* Main> */}
               <Route exact path="/" element={<MainPage />} />
-              <Route exact path="/space" element={<InfiniteSpace />} />
 
               <Route path="/game/:catname" element={<GameClient />} />
               <Route path="/duo" element={<ModePicker />} />

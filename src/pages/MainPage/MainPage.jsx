@@ -9,7 +9,7 @@ import { uPickedMode, uUserName } from '../../store/userPickSlice'
 
 import { PiCheckFatFill } from 'react-icons/pi'
 
-import { MdOutlineClose, MdOutlineModeEdit } from 'react-icons/md'
+import { MdOutlineModeEdit } from 'react-icons/md'
 import MyInput from '../../components/Tools/MyInput/MyInput'
 import { FaRandom } from 'react-icons/fa'
 import MyButton from '../../components/Tools/MyButton/MyButton'
@@ -67,7 +67,6 @@ const MainPage = () => {
   return (
     <div className={styles.allPage}>
       <div className={styles.mainPage}>
-        {/* <h4 className={styles.headerMe}>ProveIt.Fun</h4> */}
         <div className={styles.categoryBlock}>
           {savedName ? (
             <div className={styles.nameBlock1}>
@@ -112,19 +111,24 @@ const MainPage = () => {
                     key={id}
                     to={`${item.active && userName ? `/${item.link}` : '/'}`}
                     onClick={() => checkUserName(item.link)}
-                    style={{
-                      backgroundColor: `${!item.active && 'lightgray'}`,
-                    }}
-                    className={styles.oneBlock}
+                    className={`${styles.oneBlock} ${
+                      !item.active && styles.notActive
+                    }`}
                   >
-                    {item.active && (
-                      <img className={styles.imgIco} src="/vite.svg" />
-                    )}
-
-                    <div className={styles.nameCount}>
-                      <h4 className={styles.dayTimeP}>{item.name}</h4>
-                      {item.beta && <p>зроблю пізніше</p>}
+                    <div className={styles.flexIco}>
+                      {item.active && (
+                        <img className={styles.imgIco} src="/vite.svg" />
+                      )}
+                      <div className={styles.nameCount}>
+                        <h4 className={styles.dayTimeP}>{item.name}</h4>
+                      </div>
                     </div>
+                    <div className={styles.nameCount}>
+                      {item.beta && <p>в процесі</p>}
+                    </div>
+                    {/* {!item.beta && (
+                      <p className={styles.oneText}>{item.desc}</p>
+                    )} */}
                   </Link>
                 ))}
             </div>
