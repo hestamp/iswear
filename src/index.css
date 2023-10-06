@@ -16,6 +16,9 @@ html {
   width: 100%;
   background-color: var(--bgColor);
   color: var(--textColor);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 #root {
@@ -23,18 +26,22 @@ html {
   height: 100%;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 .theme {
   transition: 1s all ease;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+
   background-color: var(--bgColor);
   color: var(--textColor);
 }
 
-.light {
-  /* --bgColor: #eceff3;
-  --textColor: #353849; */
-}
 .dark {
   --bgColor: #161616;
   --bgSecond: #212121;
@@ -137,6 +144,8 @@ video {
 input {
   font-family: inherit;
   font-weight: 500;
+  background-color: var(--bgColor);
+  color: var(--textColor);
 }
 
 article,

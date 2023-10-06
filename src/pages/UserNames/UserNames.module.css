@@ -1,26 +1,12 @@
-.allPage {
-  width: 100%;
-  max-width: 700px;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  height: 100%;
-  overflow: auto;
-  justify-content: center;
-}
-
 .usernamesPage {
   display: flex;
   flex-direction: column;
   width: 100%;
-
   align-items: center;
 }
 
 .onePlayer {
   width: 100%;
-  max-width: 400px;
-  border-bottom: 1px solid lightgray;
 }
 
 .nameBlock {

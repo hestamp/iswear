@@ -1,117 +1,33 @@
-.navDiv {
-  position: relative;
+.navbar {
+  display: flex;
+  flex-direction: row;
   width: 100%;
-  display: flex;
   justify-content: space-between;
-  align-items: center;
+  padding: 0 0.5rem;
 }
 
-.themetoggle {
+.home {
   color: var(--textColor);
+  text-decoration: none;
 }
 
-.navDiv h3 {
-  font-size: 18px;
-}
-
-.menuDiv {
-  display: flex;
-  justify-content: left;
-}
-.profileDiv {
-  display: flex;
-  justify-content: right;
-}
-
-.menuToggle {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  -webkit-user-select: none;
-  user-select: none;
-  transition: 0.3s;
-  border-radius: 5px;
-}
-
-.menuToggle:hover {
-  background-color: lightgray;
-  color: #3d4655;
-  transition: 0.3s;
-}
-
-.menuIco {
-  width: 22px;
-  height: 22px;
+.navbar svg {
+  width: 24px;
+  height: 24px;
   cursor: pointer;
-}
-
-.menuToggle h3 {
-  font-weight: 600;
-}
-
-.userBar {
-  display: flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  right: 20px;
-  gap: 5px;
-  transition: 0.3s;
-  border-radius: 5px;
-}
-
-.userBar:hover {
-  background-color: lightgray;
-  color: #3d4655;
   transition: 0.3s;
 }
 
-.userBar h3 {
-  font-weight: 600;
-}
-
-.icoUser {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
-
-.icon {
-  width: 22px;
-  height: 22px;
-}
-
-@media (min-height: 800px) {
-  .icon {
-    width: 26px;
-    height: 26px;
-  }
+.navbar svg:hover {
+  opacity: 0.66;
+  transition: 0.3s;
 }
 
 @media (max-width: 600px) {
-  .userBar {
-    right: 10px;
+  .navbar svg {
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    transition: 0.3s;
   }
-
-  .userBar h3 {
-    display: none;
-  }
-  .menuToggle {
-    left: 10px;
-  }
-  .menuToggle h3 {
-    display: none;
-  }
-
-  .section3 {
-    display: none;
-  }
-}
-
-.icon:hover {
-  transition: 0.3s;
-  opacity: 0.66;
 }

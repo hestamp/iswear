@@ -1,52 +1,28 @@
-import React, { useContext } from 'react'
-import styles from './Navbar.module.css'
-
-import { useDispatch, useSelector } from 'react-redux'
-import { uSidebar } from '../../store/logicSlice'
-import { LuHome } from 'react-icons/lu'
-
-import { ThemeContext } from '../../context/ThemeContext'
-import MyTooltip from '../Tools/MyTooltip/MyTooltip'
-import { BiMoon, BiSun } from 'react-icons/bi'
+import React from 'react'
+import styles from './NavBar.module.css'
 import { Link } from 'react-router-dom'
-
-const NavBar = () => {
-  const dispatch = useDispatch()
-  const toggleSide = () => {
-    dispatch(uSidebar(true))
-  }
-
-  const { setThemeMode, themeMode } = useContext(ThemeContext)
-
+import { useTheme } from '../../context/ThemeContext'
+import { BsMoonStars, BsSun, BsHouse } from 'react-icons/bs'
+import MyTooltip from '../Tools/MyTooltip/MyTooltip'
+const Navbar = () => {
+  const { themeMode, setThemeMode } = useTheme()
   return (
-    <nav role="navigation" className={styles.navDiv}>
-      <section className={styles.menuDiv}>
-        <MyTooltip description={'Menu'} duration={100}>
-          {/* <button onClick={toggleSide} className={styles.themetoggle}>
-            <RiMenu2Fill className={styles.icon} />
-          </button> */}
-          <Link className={styles.themetoggle} to="/">
-            <LuHome className={styles.icon} />
-          </Link>
-        </MyTooltip>
-      </section>
-
-      <section className={styles.profileDiv}>
-        <MyTooltip
-          description={themeMode == 'light' ? 'Dark Mode' : 'Light Mode'}
-          duration={100}
-        >
-          <button onClick={setThemeMode} className={styles.themetoggle}>
-            {themeMode == 'light' ? (
-              <BiMoon className={styles.icon} />
-            ) : (
-              <BiSun className={styles.icon} />
-            )}
-          </button>
-        </MyTooltip>
-      </section>
+    <nav role="navigation" className={styles.navbar}>
+      <MyTooltip description="Home" position="bottom">
+        <Link className={styles.home} to="/">
+          <BsHouse />
+        </Link>
+      </MyTooltip>
+      <MyTooltip
+        description="Theme"
+        position="bottom"
+        className={styles.theme}
+        onClick={setThemeMode}
+      >
+        {themeMode == 'light' ? <BsMoonStars /> : <BsSun />}
+      </MyTooltip>
     </nav>
   )
 }
 
-export default NavBar
+export default Navbar

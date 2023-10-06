@@ -1,371 +1,50 @@
-.allPage {
-  width: 100%;
-  max-width: 700px;
-  display: flex;
-  height: 100%;
-}
-
-.mainPage {
-  gap: 1rem;
-  margin: 1rem;
-  width: 100%;
-  max-width: 95%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.headerMe {
-  background-color: lightgray;
-  width: 100%;
-  height: 50px;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
-}
-
-.inputDiv {
-  width: 100%;
-  display: flex;
-  gap: 5px;
-  margin: 1rem 0;
-}
-
-.inputDiv input {
-  width: 100%;
-  padding: 10px 5px;
-  text-align: center;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 20px;
-}
-
-.nameBlock {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.nameBlock1 {
-  display: flex;
-  justify-content: center;
-  gap: 5px;
-  align-items: center;
-}
-
-.nameBlock1 svg {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
-
-.nameBlock1 svg:hover {
-  color: gray;
-}
-
-.closeIco {
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-}
-
-.saveBtn {
-  border: 2px solid gray;
-  border-radius: 5px;
-  display: flex;
-  padding: 5px 10px;
-  background-color: whitesmoke;
-  justify-content: center;
-  gap: 5px;
-  transition: 0.3s;
-  align-self: center;
-}
-
-.saveBtn:hover {
-  background-color: lightgray;
-  transition: 0.3s;
-}
-
-.imgIco {
-  width: 24px;
-}
-
-.searchBlock {
-  border: 2px solid gray;
-  background-color: white;
-  border-radius: 5px;
-  padding: 10px;
-  width: 100%;
-  max-width: 95%;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.formSearch {
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  gap: 5px;
-}
-
-.formSearch textarea {
-  min-width: 100%;
-  width: 100%;
-  align-self: center;
-  font-size: 16px;
-  max-width: 100%;
-  border-radius: 5px;
-  background-color: whitesmoke;
-  min-height: 100px;
-  border: 2px solid gray;
-}
-
-.formSearch textarea:hover {
-  border: 2px solid #3d4655;
-  transition: 0.3s;
-}
-
-.topicDiv {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  margin: 5px 0;
-}
-
-.topicDiv ul {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.genButt {
-  border: 2px solid gray;
-  font-weight: 600;
-  border-radius: 5px;
-  background-color: whitesmoke;
-  padding: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: 0.3s;
-}
-
-.genButt:hover {
-  transition: 0.3s;
-  border: 2px solid #3d4655;
-  background: lightgray;
-}
-
-.topicButt {
-  display: flex;
-  width: 100%;
-  padding: 0;
-  justify-content: space-between;
-  transition: 0.3s;
-}
-
-.topicButt:hover {
-  text-decoration: underline;
-  transition: 0.3s;
-}
-
-.popularCount {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .categoryBlock {
   width: 100%;
-  max-width: 95%;
   border-radius: 5px;
-  background-color: var(--sideBg);
   display: flex;
   flex-direction: column;
-  padding: 15px 10px;
   gap: 1rem;
 }
 
-.nameCategory {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.seeAll {
-  text-decoration: none;
-
-  border: 1px solid gray;
-  cursor: pointer;
-  background-color: whitesmoke;
-  transition: 0.3s;
-  border-radius: 5px;
-  gap: 5px;
-  display: flex;
-  align-items: center;
-  padding: 5px;
-}
-
-.seeAll:hover {
-  background-color: lightgray;
-  transition: 0.3s;
+.categoryBlock h1 {
+  font-size: 24px;
 }
 
 .dayCarousel {
   display: flex;
   flex-direction: column;
+  align-items: center;
   overflow: auto;
   overflow-y: hidden;
-  padding-bottom: 5px;
-  transition: 0.3s;
-  max-width: 100%;
   gap: 1rem;
-}
-
-.flexIco {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.dayTimeIco {
-  width: 50px;
-  height: 50px;
-}
-
-.searchBlock h3 {
-  text-align: left;
 }
 
 .oneBlock {
   display: flex;
+  width: fit-content;
   text-decoration: none;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 8px;
+  padding: 8px 16px;
   text-align: center;
   box-shadow: var(--boxShadow);
-  border: 1px solid transparent;
+  border: 1px solid #8080806e;
   border-radius: 5px;
   color: var(--textColor);
-  background-color: var(--sideBg);
-  background-color: var(--bgSecond);
-  gap: 5px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.oneText {
-  display: flex;
-  text-decoration: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-  text-align: left;
-
-  box-shadow: var(--boxShadow);
-  border: 1px solid #80808020;
-  border-radius: 5px;
-  color: var(--textColor);
-
   background-color: var(--sideBg);
   gap: 5px;
   cursor: pointer;
   transition: 0.3s;
-}
-
-.notActive {
-  color: var(--sideBg);
-  background-color: var(--textColor);
 }
 
 .oneBlock:hover {
   border: 1px solid #8080806e;
+  color: var(--sideBg);
+  background-color: var(--textColor);
   transition: 0.3s;
 }
 
-.icoMode {
-  border: 1px solid gray;
-  border-radius: 100%;
-  background-color: gray;
-  width: 30px;
-  height: 30px;
-}
-
-.nameCount {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.feedBlock {
-  border: 2px solid gray;
-  background-color: white;
-  border-radius: 5px;
-  padding: 10px;
-  width: 100%;
-  max-width: 95%;
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.feedList {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding-right: 5px;
-  overflow: auto;
-}
-
-.feedDiv {
-  border: 2px solid gray;
-  border-radius: 5px;
-  background-color: whitesmoke;
-  width: auto;
-  display: flex;
-
-  text-decoration: none;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.feedDiv:hover {
-  background-color: lightgray;
-  border: 2px solid #3d4655;
-  transition: 0.3s;
-}
-
-.feedName {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  text-align: left;
-}
-
-.feedCategory {
-  display: flex;
-  justify-content: space-between;
-}
-
-.icoLink {
-  width: 30px;
-  height: 30px;
-}
-
-.copyright {
-  color: gray;
+.imgIco {
+  width: 24px;
 }

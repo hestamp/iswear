@@ -2,25 +2,23 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 0.5rem 0;
   text-align: center;
   align-items: center;
-
-  margin-bottom: 0.5rem;
 }
 
-.myButt:hover {
-  color: gray;
-  transition: 0.3s;
-}
-
-.myButt {
-  width: 80px;
+.backButt {
+  width: fit-content;
   color: gray;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  transition: 0.3s;
+  padding: 0;
+}
+
+.backButt:hover {
+  color: gray;
   transition: 0.3s;
 }
 .backBar svg {

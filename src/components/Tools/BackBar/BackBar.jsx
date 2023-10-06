@@ -10,19 +10,17 @@ const BackBar = () => {
   }
   return (
     <div className={styles.backBar}>
-      <h4 className={styles.myButt} onClick={goBack}>
+      <button className={styles.backButt} onClick={goBack}>
         <span>
           <RiArrowLeftSLine />
         </span>
-        Назад
-      </h4>
+      </button>
       <h4 className={styles.pathName}>Розділ</h4>
-      <h4 style={{ opacity: '0' }} className={styles.myButt}>
-        Далі
+      <button style={{ opacity: 0 }} className={styles.backButt}>
         <span>
           <RiArrowRightSLine />
         </span>
-      </h4>
+      </button>
     </div>
   )
 }

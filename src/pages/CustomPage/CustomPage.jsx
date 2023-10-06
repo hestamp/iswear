@@ -2,16 +2,11 @@ import React, { useEffect, useState } from 'react'
 import styles from './CustomPage.module.css'
 import BackBar from '../../components/Tools/BackBar/BackBar'
 import { MdAddCircleOutline, MdOutlineClose } from 'react-icons/md'
-import { useDispatch, useSelector } from 'react-redux'
-import {
-  uCustomTopics,
-  uPickedTopic,
-  uQuestArray,
-  uTopicObj,
-} from '../../store/userPickSlice'
+
 import MyInput from '../../components/Tools/MyInput/MyInput'
 import MyButton from '../../components/Tools/MyButton/MyButton'
 import { useNavigate } from 'react-router-dom'
+import { useMyContext } from '../../context/GeneralContext'
 
 const arrayList = []
 
@@ -23,20 +18,25 @@ const customTopicsArr = {
 }
 
 const CustomPage = () => {
-  const dispatch = useDispatch()
   const navigate = useNavigate()
+  const {
+    setPickedTopic,
+    setTopicObj,
+    setQuestArray,
+    customTopics,
+    setCustomTopics,
+  } = useMyContext()
 
-  const { customTopics } = useSelector((state) => state.userPick)
   const [topicName, setTopicName] = useState('')
 
   useEffect(() => {
-    dispatch(uCustomTopics(arrayList))
+    setCustomTopics(arrayList)
   }, [])
 
   const deleteItem = (item) => {
     const filtredTopics = customTopics.filter((_, id) => id != item)
     if (filtredTopics) {
-      dispatch(uCustomTopics(filtredTopics))
+      setCustomTopics(filtredTopics)
     }
   }
 
@@ -47,16 +47,16 @@ const CustomPage = () => {
   const addItem = () => {
     const newTopicsArray = [...customTopics, topicName]
     setTopicName('')
-    dispatch(uCustomTopics(newTopicsArray))
+    setCustomTopics(newTopicsArray)
   }
 
   const runMode = () => {
     if (customTopics.length > 5) {
       navigate(`/game/custom`)
-      dispatch(uPickedTopic('Cвої теми'))
-      dispatch(uQuestArray(customTopics))
+      setPickedTopic('Cвої теми')
+      setQuestArray(customTopics)
       let newObjCreate = newTopicObj()
-      dispatch(uTopicObj(newObjCreate))
+      setTopicObj(newObjCreate)
     }
   }
 
@@ -120,7 +120,7 @@ const CustomPage = () => {
               додайте ще хоч {6 - customTopics.length}
             </h4>
           ) : (
-            <MyButton onClick={runMode} text={'Почати'} />
+            <MyButton onClick={runMode}>Почати</MyButton>
           )}
         </div>
       </div>

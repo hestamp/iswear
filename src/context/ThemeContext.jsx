@@ -1,32 +1,35 @@
 'use client'
 
-import { createContext, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { uSidebar } from '../store/logicSlice'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 export const ThemeContext = createContext()
 
 export const ThemeProvider = ({ children }) => {
-  const dispatch = useDispatch()
   const [themeMode, setMode] = useState('light')
-  const { sidebar } = useSelector((state) => state.logic)
 
   const setThemeMode = () => {
     setMode((prev) => (prev === 'dark' ? 'light' : 'dark'))
+    localStorage.setItem('theme', themeMode == 'light' ? 'dark' : 'light')
   }
 
-  const closeRest = () => {
-    if (sidebar) {
-      dispatch(uSidebar(false))
+  useEffect(() => {
+    const theme = localStorage.getItem('theme')
+    if (theme) {
+      setMode(theme)
     }
-  }
+  }, [])
 
   return (
     <ThemeContext.Provider value={{ setThemeMode, themeMode }}>
-      <div onClick={closeRest} className={`theme ${themeMode}`}>
-        {' '}
-        {children}
-      </div>
+      <div className={`theme ${themeMode}`}>{children}</div>
     </ThemeContext.Provider>
   )
+}
+
+export function useTheme() {
+  const context = useContext(ThemeContext)
+  if (!context) {
+    throw new Error('Theme context is oudside of Theme Provider')
+  }
+  return context
 }

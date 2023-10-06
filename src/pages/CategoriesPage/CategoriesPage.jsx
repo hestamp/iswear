@@ -1,48 +1,40 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styles from './CategoriesPage.module.css'
-
-import { useDispatch, useSelector } from 'react-redux'
-import { uPageName } from '../../store/tempSlice'
 
 import { useNavigate } from 'react-router-dom'
 import { staticMenu } from '../../../data/static'
-import { uPickedTopic, uQuestArray, uTopicObj } from '../../store/userPickSlice'
+
 import BackBar from '../../components/Tools/BackBar/BackBar'
 import MyButton from '../../components/Tools/MyButton/MyButton'
+import { useMyContext } from '../../context/GeneralContext'
 
 const CategoriesPage = () => {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+
   const [expandedItem, setExpandedItem] = useState(null)
-  useEffect(() => {
-    dispatch(uPageName('Категорії'))
-  }, [])
+
+  const { setPickedTopic, setTopicObj, questArray, setQuestArray } =
+    useMyContext()
 
   const clickItem = (item) => {
     if (expandedItem === item.link) {
       setExpandedItem(null)
     } else {
       setExpandedItem(item.link)
-      dispatch(uTopicObj(item))
-      dispatch(uQuestArray(item.questions))
+      setTopicObj(item)
+      setQuestArray(item.questions)
     }
   }
 
   const runMode = () => {
     if (expandedItem) {
       navigate(`/game/${expandedItem}`)
-      dispatch(uPickedTopic(expandedItem))
+      setPickedTopic(expandedItem)
     }
   }
 
   return (
-    <div className={styles.allPage}>
-      {expandedItem && (
-        <div className={styles.myDiv}>
-          {' '}
-          <MyButton className={styles.myButt} text="Обрати" onClick={runMode} />
-        </div>
-      )}
+    <>
       <div className={styles.categoriesPage}>
         <BackBar />
         <div className={styles.dayCarousel}>
@@ -67,7 +59,13 @@ const CategoriesPage = () => {
             })}
         </div>
       </div>
-    </div>
+      {expandedItem && (
+        <div className={styles.myDiv}>
+          {' '}
+          <MyButton onClick={runMode}>Обрати</MyButton>
+        </div>
+      )}
+    </>
   )
 }
 

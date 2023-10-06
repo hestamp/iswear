@@ -1,21 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './GameClient.module.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { uPageColor, uPageName } from '../../store/tempSlice'
-import { useNavigate } from 'react-router-dom'
+
 import { PiUserSwitchBold } from 'react-icons/pi'
 import { TbSwitch2 } from 'react-icons/tb'
-import {
-  uQuestArray,
-  uSecondName,
-  uTopicObj,
-  uUserName,
-} from '../../store/userPickSlice'
+
 import { allTopics, myReasons, staticMenu } from '../../../data/static'
+import { useMyContext } from '../../context/GeneralContext'
 
 const GameClient = () => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
   const [roundNum, setRoundNum] = useState(1)
   const [roundTurn, setRoundTurn] = useState(1)
   const [tipUsed, setTipUsed] = useState(false)
@@ -30,9 +22,18 @@ const GameClient = () => {
   const [reasonName, setReasonName] = useState('')
   const [categoryName, setCategoryName] = useState('')
   const [isTimer, setIsTimer] = useState(false)
-  const { userName, secondName, topicObj, questArray, subMode } = useSelector(
-    (state) => state.userPick
-  )
+
+  const { topicObj, setTopicObj } = useMyContext()
+  const {
+    firstName,
+    setFirstName,
+    secondName,
+    setSecondName,
+    setPageColor,
+    subMode,
+    questArray,
+    setQuestArray,
+  } = useMyContext()
 
   const playBeep = () => {
     if (audioRef.current) {
@@ -49,7 +50,7 @@ const GameClient = () => {
     if (notrandom) {
       const updatedArray = [...questArray]
       updatedArray.splice(randomIndex, 1)
-      dispatch(uQuestArray(updatedArray))
+      setQuestArray(updatedArray)
     }
 
     return questArray[randomIndex]
@@ -64,37 +65,29 @@ const GameClient = () => {
   }
 
   useEffect(() => {
-    const value = localStorage.getItem('username')
-    const val2 = localStorage.getItem('secondname')
-    if (!value && !val2) {
-      navigate('/')
-    }
-    dispatch(uPageName('Дебати'))
-  }, [])
-  useEffect(() => {
     if (!topicObj && subMode == null) {
-      dispatch(uTopicObj(staticMenu[0]))
-      dispatch(uQuestArray(staticMenu[0].questions))
+      setTopicObj(staticMenu[0])
+      setQuestArray(staticMenu[0].questions)
       setCategoryName(staticMenu[0].name)
       if (topicObj) {
         setCategoryName(topicObj.name)
       }
     } else if (!topicObj && subMode == 'random') {
-      dispatch(uQuestArray(allTopics))
+      setQuestArray(allTopics)
       setCategoryName('Випадкові')
     } else {
-      dispatch(uQuestArray(topicObj.questions))
+      setQuestArray(topicObj.questions)
       setCategoryName(topicObj.name)
     }
   }, [])
 
   useEffect(() => {
     if (isTimer && activeSpeaker == 1) {
-      dispatch(uPageColor('skyblue'))
+      setPageColor('skyblue')
     } else if (isTimer && activeSpeaker == 2) {
-      dispatch(uPageColor('pink'))
+      setPageColor('pink')
     } else {
-      dispatch(uPageColor('#f7f8fa'))
+      setPageColor('#f7f8fa')
     }
   }, [activeSpeaker, isTimer])
 
@@ -166,10 +159,10 @@ const GameClient = () => {
   }
 
   const switchNames = () => {
-    const oneNames = userName
+    const oneNames = firstName
     const twoNames = secondName
-    dispatch(uUserName(twoNames))
-    dispatch(uSecondName(oneNames))
+    setFirstName(twoNames)
+    setSecondName(oneNames)
   }
 
   const truncateTopicName = (name, maxLength) => {
@@ -213,7 +206,7 @@ const GameClient = () => {
             {activeSpeaker == 1 && (
               <img className={styles.icoSvg} src="/vite.svg" />
             )}
-            <h4>{userName}</h4>
+            <h4>{firstName}</h4>
           </div>
           <div
             onClick={() => nextPlayer(2)}
@@ -290,7 +283,7 @@ const GameClient = () => {
                   <h4>Раунд {roundNum}</h4>
 
                   <h4>
-                    {activeSpeaker == 1 ? `${userName}` : `${secondName}`}:{' '}
+                    {activeSpeaker == 1 ? `${firstName}` : `${secondName}`}:{' '}
                     {activeSpeaker == 1 ? 'ЗА' : 'ПРОТИ'}
                   </h4>
                 </div>

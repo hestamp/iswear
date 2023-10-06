@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styles from './ModePicker.module.css'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { uPageName } from '../../store/tempSlice'
-import { uSubMode } from '../../store/userPickSlice'
 
 import MySpinner from '../../components/Tools/MySpinner/MySpinner'
 import BackBar from '../../components/Tools/BackBar/BackBar'
 import MyButton from '../../components/Tools/MyButton/MyButton'
+import { useMyContext } from '../../context/GeneralContext'
 
 const modeList = [
   {
@@ -33,20 +31,15 @@ const modeList = [
   },
 ]
 const ModePicker = () => {
-  const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    dispatch(uPageName('Дебати'))
-  }, [])
-
   const [expandedItem, setExpandedItem] = useState('classic')
-
+  const { setSubMode } = useMyContext()
   const pickCategory = (event, item) => {
     event.preventDefault()
-    dispatch(uSubMode(item.myid))
+    setSubMode(item.myid)
 
-    navigate(`/duo/names`)
+    navigate(`/mode/names`)
   }
 
   const clickItem = (item) => {
@@ -72,12 +65,11 @@ const ModePicker = () => {
               <h4>{item.name}</h4>
               {expandedItem == item.myid && <p>{item.description}</p>}
               {expandedItem == item.myid && item.active ? (
-                <MyButton
-                  onClick={(event) => pickCategory(event, item)}
-                  text="Обрати"
-                />
+                <MyButton onClick={(event) => pickCategory(event, item)}>
+                  Обрати
+                </MyButton>
               ) : expandedItem == item.myid && !item.active ? (
-                <MyButton onClick={() => {}} text="Недоступно" />
+                <MyButton onClick={() => {}}>Недоступно</MyButton>
               ) : (
                 <></>
               )}

@@ -1,21 +1,25 @@
-.saveBtn {
+.allButt {
   border: 1px solid lightgray;
   border-radius: 5px;
   display: flex;
   padding: 10px 15px;
-  background-color: whitesmoke;
+  background-color: var(--textColor);
+  color: var(--bgColor);
   justify-content: center;
   gap: 10px;
   transition: 0.3s;
   align-self: center;
   outline: none;
+  font-size: 16px;
 }
 
-.saveBtn:hover {
-  background-color: lightgray;
+.allButt:hover {
+  opacity: 0.66;
   transition: 0.3s;
 }
 
-.icoSvg {
-  color: gray;
+@media (max-width: 600px) {
+  .allButt {
+    padding: 8px 12px;
+  }
 }

@@ -7,7 +7,6 @@ const MyInput = ({
   value,
   maxLength,
   minLength,
-  bgcolor,
   leftIco,
   rightIco,
   rightFunc,
@@ -17,7 +16,6 @@ const MyInput = ({
   return (
     <div className={styles.inputDiv}>
       <input
-        style={{ backgroundColor: bgcolor }}
         placeholder={placeholder}
         value={value}
         onChange={(e) => setFunc(e.target.value)}
