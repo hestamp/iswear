@@ -1,10 +1,10 @@
 import React from 'react'
-import styles from './NavBar.module.css'
+import styles from './Navbar.module.css'
 import { Link } from 'react-router-dom'
 import { useTheme } from '../../context/ThemeContext'
 import { BsMoonStars, BsSun, BsHouse } from 'react-icons/bs'
 import MyTooltip from '../Tools/MyTooltip/MyTooltip'
-const NavBar = () => {
+const Navbar = () => {
   const { themeMode, setThemeMode } = useTheme()
   return (
     <nav role="navigation" className={styles.navbar}>
@@ -25,4 +25,4 @@ const NavBar = () => {
   )
 }
 
-export default NavBar
+export default Navbar

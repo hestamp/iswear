@@ -11,14 +11,14 @@ import ModePicker from './pages/ModePicker/ModePicker'
 import GameClient from './pages/GameClient/GameClient'
 import UserNames from './pages/UserNames/UserNames'
 
-import NavBar from './components/NavBar/Navbar'
+import Navbar from './components/Navbar/Navbar'
 import CustomPage from './pages/CustomPage/CustomPage'
 
 function App() {
   return (
     <div className={styles.appwrap}>
       <nav className={styles.section1}>
-        <NavBar />
+        <Navbar />
       </nav>
       <main className={styles.section2}>
         <div className={styles.allPage}>
