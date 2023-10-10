@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './CategoriesPage.module.css'
 
 import { useNavigate } from 'react-router-dom'
@@ -13,8 +13,17 @@ const CategoriesPage = () => {
 
   const [expandedItem, setExpandedItem] = useState(null)
 
-  const { setPickedTopic, setTopicObj, questArray, setQuestArray } =
-    useMyContext()
+  const {
+    setPickedTopic,
+    setTopicObj,
+    questArray,
+    setQuestArray,
+    setPageName,
+  } = useMyContext()
+
+  useEffect(() => {
+    setPageName('Категорії')
+  }, [])
 
   const clickItem = (item) => {
     if (expandedItem === item.link) {
@@ -45,10 +54,8 @@ const CategoriesPage = () => {
                 <div
                   key={id}
                   onClick={() => clickItem(item)}
-                  className={`${
-                    expandedItem == item.link
-                      ? styles.pickedItem
-                      : styles.oneBlock
+                  className={`${styles.oneBlock} ${
+                    expandedItem == item.link && styles.pickedItem
                   }`}
                 >
                   <div className={styles.nameCount}>

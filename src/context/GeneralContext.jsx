@@ -14,6 +14,7 @@ export const GeneralProvider = ({ children }) => {
   const [topicObj, setTopicObj] = useState(null)
   const [questArray, setQuestArray] = useState(null)
   const [customTopics, setCustomTopics] = useState([])
+  const [pageName, setPageName] = useState('Page')
 
   useEffect(() => {
     const oneName = localStorage.getItem('username')
@@ -45,6 +46,8 @@ export const GeneralProvider = ({ children }) => {
     setCustomTopics,
     pageColor,
     setPageColor,
+    pageName,
+    setPageName,
   }
 
   return (

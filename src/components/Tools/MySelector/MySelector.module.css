@@ -1,0 +1,29 @@
+.simpleSelector {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.simpleSelector select {
+  padding: 8px 0;
+  cursor: pointer;
+  font-size: 14px;
+  background-color: none;
+  background: none;
+  color: var(--textColor);
+  border: var(--borderMain);
+  border-radius: 4px;
+  outline: none;
+  width: 100%;
+}
+
+.simpleSelector select option {
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.simpleSelector select:focus {
+  border-color: var(--textColor);
+}

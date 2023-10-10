@@ -10,7 +10,10 @@ const MainPage = () => {
   return (
     <>
       <div className={styles.categoryBlock}>
-        <h1>Prove It</h1>
+        <div className={styles.logo}>
+          <img className={styles.imgIco} src="/vite.svg" />
+          <h1>Prove It</h1>
+        </div>
         <div className={styles.dayCarousel}>
           {categoriesArr &&
             categoriesArr.length &&
@@ -21,10 +24,24 @@ const MainPage = () => {
                 onClick={() => setPickedMode(item.link)}
                 className={styles.oneBlock}
               >
-                <img className={styles.imgIco} src="/vite.svg" />
                 <h4 className={styles.dayTimeP}>{item.name}</h4>
               </Link>
             ))}
+        </div>
+        <div className={styles.footer}>
+          <p>
+            Developed by{' '}
+            <span>
+              <Link
+                className={styles.link}
+                target="_blank"
+                to="https://hestamp.com"
+              >
+                Tom Hestamp
+              </Link>
+            </span>
+          </p>
+          <p>Copyright 2023</p>
         </div>
       </div>
     </>

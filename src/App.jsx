@@ -17,7 +17,7 @@ import Header from './components/Header/Header'
 function App() {
   return (
     <div className={styles.appwrap}>
-      <nav className={styles.section1}>
+      <nav role="navigation" className={styles.section1}>
         <Header />
       </nav>
       <main className={styles.section2}>

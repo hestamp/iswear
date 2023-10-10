@@ -1,13 +1,30 @@
 .categoryBlock {
   width: 100%;
+  height: 100%;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 1rem;
 }
 
-.categoryBlock h1 {
-  font-size: 24px;
+.link {
+  color: gray;
+}
+
+.logo {
+  height: 40px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 5px;
+  align-items: center;
+}
+
+.logo h1 {
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .dayCarousel {
@@ -17,19 +34,20 @@
   overflow: auto;
   overflow-y: hidden;
   gap: 1rem;
+  width: 100%;
 }
 
 .oneBlock {
   display: flex;
-  width: fit-content;
+  width: 234px;
   text-decoration: none;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 8px 16px;
+  padding: 1rem 0;
   text-align: center;
   box-shadow: var(--boxShadow);
-  border: 1px solid #8080806e;
+  border: var(--borderMain);
   border-radius: 5px;
   color: var(--textColor);
   background-color: var(--sideBg);
@@ -39,12 +57,22 @@
 }
 
 .oneBlock:hover {
-  border: 1px solid #8080806e;
   color: var(--sideBg);
   background-color: var(--textColor);
   transition: 0.3s;
 }
 
 .imgIco {
-  width: 24px;
+  height: 24px;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer p {
+  color: gray;
+  font-size: 12px;
 }

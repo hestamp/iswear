@@ -1,12 +1,9 @@
 .allPage {
-  width: 100%;
-  max-width: 700px;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  margin: 0;
-  padding: 0;
+  gap: 10px;
   align-items: center;
+  width: 100%;
 }
 
 .categoryList {
@@ -19,37 +16,31 @@
 }
 
 .oneBlock {
-  position: relative;
-  width: calc(90% - 2px);
-  cursor: pointer;
-  background-color: var(--bgColor);
-
-  border: 1px solid gray;
-  padding: 10px;
-  border-radius: 5px;
-  transition: 0.3s;
   display: flex;
+  width: 100%;
+  max-width: 400px;
+  text-decoration: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+  text-align: center;
+  box-shadow: var(--boxShadow);
+  border: var(--borderMain);
+  border-radius: 5px;
+  color: var(--textColor);
+  background-color: var(--sideBg);
   gap: 10px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .oneBlock:hover {
-  border: 1px solid black;
+  border: 1px solid #8080806e;
+  background-color: var(--bgColor);
   transition: 0.3s;
 }
 
-.btnCategory {
-  border-radius: 5px;
-  border: 1px solid #3d4655;
-  background-color: gray;
-
-  padding: 5px;
-  transition: 0.3s;
-  font-weight: 500;
-}
-
-.btnCategory:hover {
-  border: 1px solid gray;
-  background-color: #3d4655;
-  transition: 0.3s;
+.oneBlock p {
+  max-width: 90%;
 }

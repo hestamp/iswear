@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './MyInput.module.css'
-import { MdOutlineBackspace } from 'react-icons/md'
+import { RxCross1 } from 'react-icons/rx'
 const MyInput = ({
   placeholder,
   setFunc,
@@ -30,7 +30,7 @@ const MyInput = ({
       )}
 
       {rightIco && (
-        <MdOutlineBackspace
+        <RxCross1
           style={{ opacity: `${rightOpacity}` }}
           className={styles.inputIconRight}
           onClick={rightFunc}

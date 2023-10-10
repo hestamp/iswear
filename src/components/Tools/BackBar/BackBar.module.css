@@ -4,6 +4,7 @@
   justify-content: space-between;
   text-align: center;
   align-items: center;
+  height: 40px;
 }
 
 .backButt {
@@ -24,4 +25,9 @@
 .backBar svg {
   width: 30px;
   height: 30px;
+}
+
+.pathName {
+  font-size: 20px;
+  font-weight: 600;
 }

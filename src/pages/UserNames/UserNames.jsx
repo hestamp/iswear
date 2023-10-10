@@ -5,14 +5,15 @@ import { PiCheckFatFill } from 'react-icons/pi'
 
 import { useNavigate } from 'react-router-dom'
 
-import { FaRandom } from 'react-icons/fa'
+import { HiOutlineSwitchHorizontal } from 'react-icons/hi'
 import { randomNames } from '../../../data/static'
 import BackBar from '../../components/Tools/BackBar/BackBar'
 import MyInput from '../../components/Tools/MyInput/MyInput'
 import MyButton from '../../components/Tools/MyButton/MyButton'
 import { useMyContext } from '../../context/GeneralContext'
 const UserNames = () => {
-  const { firstName, setFirstName, secondName, setSecondName } = useMyContext()
+  const { firstName, setFirstName, secondName, setSecondName, setPageName } =
+    useMyContext()
 
   const navigate = useNavigate()
 
@@ -21,6 +22,10 @@ const UserNames = () => {
   const clearInput = (func) => {
     func('')
   }
+
+  useEffect(() => {
+    setPageName('Гравці')
+  }, [])
 
   const generateRandomName = () => {
     const randomIndex = Math.floor(Math.random() * randomNames.length)
@@ -63,7 +68,7 @@ const UserNames = () => {
               rightOpacity={firstName.length}
               rightFunc={() => clearInput(setFirstName)}
               leftFunc={() => getName(setFirstName)}
-              leftIco={<FaRandom />}
+              leftIco={<HiOutlineSwitchHorizontal />}
               placeholder="місце для фантазії"
               setFunc={setFirstName}
               maxLength={11}
@@ -81,7 +86,7 @@ const UserNames = () => {
               rightIco
               rightFunc={() => clearInput(setSecondName)}
               leftIco={
-                <FaRandom
+                <HiOutlineSwitchHorizontal
                   onClick={() => getName(setSecondName)}
                   className={styles.closeIco2}
                 />
@@ -93,12 +98,15 @@ const UserNames = () => {
               value={secondName}
             />
           </div>
-
+        </form>
+        {firstName.length > 1 && secondName.length > 1 ? (
           <MyButton onClick={saveName}>
             <PiCheckFatFill />
             Зберегти
           </MyButton>
-        </form>
+        ) : (
+          <div></div>
+        )}
       </div>
     </>
   )

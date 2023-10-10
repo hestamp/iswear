@@ -41,4 +41,6 @@
   border: var(--borderMain);
   padding: 0.5rem;
   margin: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
 }

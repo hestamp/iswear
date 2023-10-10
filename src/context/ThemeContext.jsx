@@ -21,7 +21,12 @@ export const ThemeProvider = ({ children }) => {
 
   return (
     <ThemeContext.Provider value={{ setThemeMode, themeMode }}>
-      <div className={`theme ${themeMode}`}>{children}</div>
+      <div className={`theme ${themeMode}`}>
+        {children}
+        <div class="animation-container">
+          <div class="background-transition"></div>
+        </div>
+      </div>
     </ThemeContext.Provider>
   )
 }

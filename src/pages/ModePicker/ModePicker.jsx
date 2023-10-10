@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './ModePicker.module.css'
 import { useNavigate } from 'react-router-dom'
 
@@ -13,7 +13,6 @@ const modeList = [
     description:
       'Проводь дебати на обрану тему. Стандартний ліміт в 1 хвилину для виступу кожного з учасників',
     myid: 'classic',
-    active: true,
   },
 
   {
@@ -21,20 +20,18 @@ const modeList = [
     description:
       'Ви можете додати свої теми і кожного раунду випадковим чином вибирається одна з доданих тем',
     myid: 'custom',
-    active: true,
   },
   {
     name: 'Випадковий',
     description: 'Ви отримуєте тему, причини і сторони абсолютно випадково',
     myid: 'random',
-    active: true,
   },
 ]
 const ModePicker = () => {
   const navigate = useNavigate()
 
   const [expandedItem, setExpandedItem] = useState('classic')
-  const { setSubMode } = useMyContext()
+  const { setSubMode, setPageName } = useMyContext()
   const pickCategory = (event, item) => {
     event.preventDefault()
     setSubMode(item.myid)
@@ -50,6 +47,10 @@ const ModePicker = () => {
     }
   }
 
+  useEffect(() => {
+    setPageName('Режим')
+  }, [])
+
   return (
     <div className={styles.allPage}>
       <BackBar />
@@ -59,17 +60,14 @@ const ModePicker = () => {
             <div
               onClick={() => clickItem(item)}
               key={item.myid}
-              style={{ backgroundColor: `${!item.active && 'lightgray'}` }}
               className={styles.oneBlock}
             >
               <h4>{item.name}</h4>
               {expandedItem == item.myid && <p>{item.description}</p>}
-              {expandedItem == item.myid && item.active ? (
+              {expandedItem == item.myid ? (
                 <MyButton onClick={(event) => pickCategory(event, item)}>
                   Обрати
                 </MyButton>
-              ) : expandedItem == item.myid && !item.active ? (
-                <MyButton onClick={() => {}}>Недоступно</MyButton>
               ) : (
                 <></>
               )}

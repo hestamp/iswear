@@ -4,6 +4,7 @@
   --bgColor: #eceff3;
   --bgSecond: #ffffff;
   --textColor: #353849;
+  --borderAll: 1px solid #8080806e;
   --borderMain: 1px solid #90909010;
   --boxShadow: 0px 1px 1px 0px rgba(102, 109, 128, 0.08),
     0px 4px 8px 0px rgba(102, 109, 128, 0.08);
@@ -33,11 +34,33 @@ body {
   height: 100vh;
 }
 
+.animation-container {
+  position: relative;
+  height: 0;
+}
+
+.background-transition {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: white;
+  animation: riseBackground 60s linear forwards;
+}
+
+@keyframes riseBackground {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+  }
+}
+
 .theme {
-  transition: 1s all ease;
   width: 100%;
   height: 100vh;
-
   background-color: var(--bgColor);
   color: var(--textColor);
 }
@@ -146,6 +169,10 @@ input {
   font-weight: 500;
   background-color: var(--bgColor);
   color: var(--textColor);
+}
+
+h4 {
+  font-weight: 500;
 }
 
 article,

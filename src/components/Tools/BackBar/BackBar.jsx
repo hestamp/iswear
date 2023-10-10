@@ -2,9 +2,10 @@ import React from 'react'
 import styles from './BackBar.module.css'
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri'
 import { useNavigate } from 'react-router-dom'
+import { useMyContext } from '../../../context/GeneralContext'
 const BackBar = () => {
   const navigate = useNavigate()
-
+  const { pageName } = useMyContext()
   const goBack = () => {
     navigate(-1)
   }
@@ -15,7 +16,7 @@ const BackBar = () => {
           <RiArrowLeftSLine />
         </span>
       </button>
-      <h4 className={styles.pathName}>Розділ</h4>
+      <h4 className={styles.pathName}>{pageName || 'Розділ'}</h4>
       <button style={{ opacity: 0 }} className={styles.backButt}>
         <span>
           <RiArrowRightSLine />

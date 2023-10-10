@@ -2,11 +2,17 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
   align-items: center;
+  gap: 1rem;
 }
 
 .onePlayer {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  gap: 1rem;
 }
 
 .nameBlock {
@@ -18,7 +24,7 @@
 }
 
 .onePlayer h4 {
-  text-align: right;
+  text-align: left;
 }
 
 .inputDiv {

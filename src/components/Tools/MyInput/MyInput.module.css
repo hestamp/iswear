@@ -6,7 +6,7 @@
   align-items: center;
   gap: 5px;
 
-  background-color: var(--bgColor);
+  background-color: var(--sideBg);
 }
 
 .inputDiv input {
@@ -16,8 +16,8 @@
   border-radius: 5px;
   font-weight: 600;
   font-size: 16px;
-  background-color: var(--bgColor);
-  border: 1px solid lightgray;
+  background-color: var(--sideBg);
+  border: var(--borderMain);
 }
 
 .inputIconLeft {

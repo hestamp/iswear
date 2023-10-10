@@ -4,6 +4,7 @@
   width: 100%;
   justify-content: space-between;
   padding: 0 0.5rem;
+  align-items: center;
 }
 
 .home {
@@ -30,4 +31,22 @@
     cursor: pointer;
     transition: 0.3s;
   }
+}
+
+.logo {
+  height: 40px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 5px;
+  align-items: center;
+}
+
+.logo h1 {
+  font-size: 24px;
+}
+
+.imgIco {
+  width: 24px;
 }
