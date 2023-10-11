@@ -8,10 +8,6 @@
   gap: 1rem;
 }
 
-.link {
-  color: gray;
-}
-
 .logo {
   height: 40px;
 
@@ -56,6 +52,10 @@
   transition: 0.3s;
 }
 
+.oneBlock svg {
+  width: 20px;
+}
+
 .oneBlock:hover {
   color: var(--sideBg);
   background-color: var(--textColor);
@@ -64,15 +64,4 @@
 
 .imgIco {
   height: 24px;
-}
-
-.footer {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.footer p {
-  color: gray;
-  font-size: 12px;
 }

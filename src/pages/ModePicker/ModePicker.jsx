@@ -6,32 +6,13 @@ import MySpinner from '../../components/Tools/MySpinner/MySpinner'
 import BackBar from '../../components/Tools/BackBar/BackBar'
 import MyButton from '../../components/Tools/MyButton/MyButton'
 import { useMyContext } from '../../context/GeneralContext'
+import { modeList } from '../../../data/static'
 
-const modeList = [
-  {
-    name: 'Класичний',
-    description:
-      'Проводь дебати на обрану тему. Стандартний ліміт в 1 хвилину для виступу кожного з учасників',
-    myid: 'classic',
-  },
-
-  {
-    name: 'Свої теми',
-    description:
-      'Ви можете додати свої теми і кожного раунду випадковим чином вибирається одна з доданих тем',
-    myid: 'custom',
-  },
-  {
-    name: 'Випадковий',
-    description: 'Ви отримуєте тему, причини і сторони абсолютно випадково',
-    myid: 'random',
-  },
-]
 const ModePicker = () => {
   const navigate = useNavigate()
 
   const [expandedItem, setExpandedItem] = useState('classic')
-  const { setSubMode, setPageName } = useMyContext()
+  const { setSubMode, setPageName, lang } = useMyContext()
   const pickCategory = (event, item) => {
     event.preventDefault()
     setSubMode(item.myid)
@@ -48,7 +29,7 @@ const ModePicker = () => {
   }
 
   useEffect(() => {
-    setPageName('Режим')
+    setPageName(lang == 'ENG' ? 'Mode' : 'Режими')
   }, [])
 
   return (
@@ -62,11 +43,11 @@ const ModePicker = () => {
               key={item.myid}
               className={styles.oneBlock}
             >
-              <h4>{item.name}</h4>
-              {expandedItem == item.myid && <p>{item.description}</p>}
+              <h4>{item.name[lang]}</h4>
+              {expandedItem == item.myid && <p>{item.description[lang]}</p>}
               {expandedItem == item.myid ? (
                 <MyButton onClick={(event) => pickCategory(event, item)}>
-                  Обрати
+                  {lang == 'ENG' ? 'Pick' : 'Обрати'}
                 </MyButton>
               ) : (
                 <></>

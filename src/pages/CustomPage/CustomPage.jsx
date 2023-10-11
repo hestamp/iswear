@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import styles from './CustomPage.module.css'
 import BackBar from '../../components/Tools/BackBar/BackBar'
-import { MdAddCircleOutline, MdOutlineClose } from 'react-icons/md'
+import { MdOutlineClose } from 'react-icons/md'
+import { FiPlus } from 'react-icons/fi'
 
 import MyInput from '../../components/Tools/MyInput/MyInput'
 import MyButton from '../../components/Tools/MyButton/MyButton'
 import { useNavigate } from 'react-router-dom'
 import { useMyContext } from '../../context/GeneralContext'
+import { customLang } from '../../../data/static'
 
 const arrayList = []
 
@@ -25,6 +27,7 @@ const CustomPage = () => {
     setQuestArray,
     customTopics,
     setCustomTopics,
+    lang,
   } = useMyContext()
 
   const [topicName, setTopicName] = useState('')
@@ -70,18 +73,18 @@ const CustomPage = () => {
     <div className={styles.allPage}>
       <div className={styles.customPage}>
         <BackBar />
-        <h4 className={styles.mainLabel}>Придумай цікаву тему:</h4>
+        <h4 className={styles.mainLabel}>{customLang.header[lang]}:</h4>
         <MyInput
           rightIco
           rightFunc={clearInput}
           leftIco={
-            <MdAddCircleOutline
+            <FiPlus
               style={{ display: `${topicName.length > 5 ? '' : 'none'}` }}
               className={styles.addIco}
               onClick={addItem}
             />
           }
-          placeholder="прояви фантазію"
+          placeholder={customLang.inputplace[lang]}
           setFunc={setTopicName}
           minLength={3}
           value={topicName}
@@ -89,7 +92,7 @@ const CustomPage = () => {
         />
         <div className={styles.topicsBlock}>
           <div className={styles.signNumb}>
-            <h4>Список тем:</h4>
+            <h4>{customLang.list[lang]}:</h4>
             <h4>{customTopics.length}</h4>
           </div>
           {customTopics.length ? (
@@ -115,12 +118,12 @@ const CustomPage = () => {
         <div className={styles.startOrText}>
           {customTopics.length < 6 ? (
             <h4>
-              Для початку гри
+              {customLang.tostart[lang]}
               <br />
-              додайте ще хоч {6 - customTopics.length}
+              {customLang.addsome[lang]} {6 - customTopics.length}
             </h4>
           ) : (
-            <MyButton onClick={runMode}>Почати</MyButton>
+            <MyButton onClick={runMode}>{customLang.start[lang]}</MyButton>
           )}
         </div>
       </div>

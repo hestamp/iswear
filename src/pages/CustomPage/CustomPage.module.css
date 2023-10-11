@@ -12,6 +12,7 @@
   flex-direction: column;
   width: 100%;
   max-width: 95%;
+  gap: 1rem;
   align-items: center;
 }
 
@@ -63,11 +64,9 @@
 }
 
 .oneTopic {
-  padding: 10px 0;
-  background-color: white;
   display: flex;
   align-items: center;
-  width: calc(100% - 20px);
+  width: calc(100% - 22px);
   justify-content: space-between;
   text-align: left;
   padding: 10px;

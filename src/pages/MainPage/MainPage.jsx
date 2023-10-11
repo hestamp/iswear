@@ -3,9 +3,10 @@ import styles from './MainPage.module.css'
 import { Link } from 'react-router-dom'
 import { categoriesArr } from '../../../data/static'
 import { useMyContext } from '../../context/GeneralContext'
+import Footer from '../../components/Footer/Footer'
 
 const MainPage = () => {
-  const { setPickedMode } = useMyContext()
+  const { setPickedMode, lang, setLang } = useMyContext()
 
   return (
     <>
@@ -24,25 +25,12 @@ const MainPage = () => {
                 onClick={() => setPickedMode(item.link)}
                 className={styles.oneBlock}
               >
-                <h4 className={styles.dayTimeP}>{item.name}</h4>
+                {<item.ico />}
+                <h4 className={styles.dayTimeP}>{item.name[lang]}</h4>
               </Link>
             ))}
         </div>
-        <div className={styles.footer}>
-          <p>
-            Developed by{' '}
-            <span>
-              <Link
-                className={styles.link}
-                target="_blank"
-                to="https://hestamp.com"
-              >
-                Tom Hestamp
-              </Link>
-            </span>
-          </p>
-          <p>Copyright 2023</p>
-        </div>
+        <Footer />
       </div>
     </>
   )

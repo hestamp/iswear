@@ -19,11 +19,17 @@ const CategoriesPage = () => {
     questArray,
     setQuestArray,
     setPageName,
+    lang,
+    setLang,
   } = useMyContext()
 
   useEffect(() => {
-    setPageName('Категорії')
-  }, [])
+    if (lang == 'UKR') {
+      setPageName('Категорії')
+    } else {
+      setPageName('Categories')
+    }
+  }, [lang])
 
   const clickItem = (item) => {
     if (expandedItem === item.link) {
@@ -31,7 +37,7 @@ const CategoriesPage = () => {
     } else {
       setExpandedItem(item.link)
       setTopicObj(item)
-      setQuestArray(item.questions)
+      setQuestArray(item.questions[lang])
     }
   }
 
@@ -59,7 +65,7 @@ const CategoriesPage = () => {
                   }`}
                 >
                   <div className={styles.nameCount}>
-                    <h4 className={styles.dayTimeP}>{item.name}</h4>
+                    <h4 className={styles.dayTimeP}>{item.name[lang]}</h4>
                   </div>
                 </div>
               )
@@ -69,7 +75,9 @@ const CategoriesPage = () => {
       {expandedItem && (
         <div className={styles.myDiv}>
           {' '}
-          <MyButton onClick={runMode}>Обрати</MyButton>
+          <MyButton onClick={runMode}>
+            {lang == 'ENG' ? 'Pick' : 'Обрати'}
+          </MyButton>
         </div>
       )}
     </>

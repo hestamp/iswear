@@ -1,10 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './GameClient.module.css'
-
 import { PiUserSwitchBold } from 'react-icons/pi'
 import { TbSwitch2 } from 'react-icons/tb'
-
-import { allTopics, myReasons, staticMenu } from '../../../data/static'
+import {
+  allTopics,
+  gameLang,
+  myReasons,
+  staticMenu,
+} from '../../../data/static'
 import { useMyContext } from '../../context/GeneralContext'
 
 const GameClient = () => {
@@ -17,13 +20,11 @@ const GameClient = () => {
   const [seconds, setSeconds] = useState(60)
   const intervalRef = useRef(null)
   const audioRef = useRef(null)
-
   const [topicName, setTopicName] = useState('')
   const [reasonName, setReasonName] = useState('')
   const [categoryName, setCategoryName] = useState('')
   const [isTimer, setIsTimer] = useState(false)
 
-  const { topicObj, setTopicObj } = useMyContext()
   const {
     firstName,
     setFirstName,
@@ -33,6 +34,9 @@ const GameClient = () => {
     subMode,
     questArray,
     setQuestArray,
+    lang,
+    topicObj,
+    setTopicObj,
   } = useMyContext()
 
   const playBeep = () => {
@@ -55,13 +59,10 @@ const GameClient = () => {
 
     return questArray[randomIndex]
   }
-  const generateRandomReason = (notrandom) => {
-    const randomIndex = Math.floor(Math.random() * myReasons.length)
-    if (notrandom) {
-      const updatedArray = [...questArray]
-      updatedArray.splice(randomIndex, 1)
-    }
-    return myReasons[randomIndex]
+  const generateRandomReason = () => {
+    const randomIndex = Math.floor(Math.random() * myReasons[lang].length)
+
+    return myReasons[lang][randomIndex]
   }
 
   useEffect(() => {
@@ -76,8 +77,8 @@ const GameClient = () => {
       setQuestArray(allTopics)
       setCategoryName('Випадкові')
     } else {
-      setQuestArray(topicObj.questions)
-      setCategoryName(topicObj.name)
+      setQuestArray(topicObj.questions[lang])
+      setCategoryName(topicObj.name[lang])
     }
   }, [])
 
@@ -196,7 +197,7 @@ const GameClient = () => {
     >
       <div className={styles.gameClient}>
         <div className={styles.userBLock}>
-          <div
+          <button
             onClick={() => nextPlayer(1)}
             style={{ backgroundColor: 'skyblue' }}
             className={`${styles.oneUser} ${
@@ -207,8 +208,8 @@ const GameClient = () => {
               <img className={styles.icoSvg} src="/vite.svg" />
             )}
             <h4>{firstName}</h4>
-          </div>
-          <div
+          </button>
+          <button
             onClick={() => nextPlayer(2)}
             style={{ backgroundColor: 'pink' }}
             className={`${styles.oneUser} ${
@@ -219,41 +220,44 @@ const GameClient = () => {
             {activeSpeaker == 2 && (
               <img className={styles.icoSvg2} src="/vite.svg" />
             )}
-          </div>
+          </button>
         </div>
 
         <div className={styles.allInfoBlock}>
           <div className={styles.cardInfo}>
             <div className={styles.cardBlock}>
               <div className={styles.buttAndName}>
-                <PiUserSwitchBold
-                  className={styles.icoSvg}
+                <button
+                  className={styles.icoSvg3}
                   style={{ display: `${isTimer ? 'none' : ''}` }}
                   onClick={switchNames}
-                />
+                >
+                  {' '}
+                  <PiUserSwitchBold />
+                </button>
 
                 <h4 className={styles.topicName}> {truncatedTopicName}</h4>
                 <TbSwitch2
-                  className={styles.icoSvg}
+                  className={styles.icoSvg3}
                   onClick={getRandom}
                   style={{ display: `${isTimer ? 'none' : ''}` }}
                 />
               </div>
 
-              {noTopic && <h3>Оберіть тему і почніть дебати!</h3>}
+              {noTopic && <h3>{gameLang.choose[lang]}!</h3>}
               {!noTopic && questArray && questArray.length ? (
                 <h3 data-value={topicName}>{topicName}</h3>
               ) : !noTopic ? (
-                <h3>Теми закінчились</h3>
+                <h3>{gameLang.over[lang]}</h3>
               ) : (
                 <></>
               )}
 
               {!isCard ? (
                 <div className={styles.reasonBlock}>
-                  <h4>Причина:</h4>
+                  <h4>{gameLang.reason[lang]}:</h4>
                   <button className={styles.myButt2} onClick={getRandomReason}>
-                    Взяти
+                    {gameLang.pick[lang]}
                   </button>
                 </div>
               ) : (
@@ -280,11 +284,15 @@ const GameClient = () => {
                   }}
                   className={styles.positionH}
                 >
-                  <h4>Раунд {roundNum}</h4>
+                  <h4>
+                    {gameLang.round[lang]} {roundNum}
+                  </h4>
 
                   <h4>
                     {activeSpeaker == 1 ? `${firstName}` : `${secondName}`}:{' '}
-                    {activeSpeaker == 1 ? 'ЗА' : 'ПРОТИ'}
+                    {activeSpeaker == 1
+                      ? `${gameLang.for[lang]}`
+                      : `${gameLang.against[lang]}`}
                   </h4>
                 </div>
               </div>
@@ -299,26 +307,26 @@ const GameClient = () => {
                 onClick={add30Seconds}
                 className={styles.myButt}
               >
-                +30с
+                +30{gameLang.sec[lang]}
               </button>
               <button onClick={finishTimer} className={styles.myButt}>
-                Завершити
+                {gameLang.end[lang]}
               </button>
             </div>
           ) : (
             <div className={styles.buttBlock}>
               {topicName.length && roundTurn <= 2 ? (
                 <button onClick={startTimer} className={styles.myButt}>
-                  Почати раунд
+                  {gameLang.start[lang]}
                 </button>
               ) : topicName.length && roundTurn > 2 ? (
                 <button onClick={getNewTopic} className={styles.myButt}>
-                  Наступна тема
+                  {gameLang.next[lang]}
                 </button>
               ) : (
                 <div className={styles.buttBlock}>
                   <button onClick={getRandom} className={styles.myButt}>
-                    Випадкова
+                    {gameLang.random[lang]}
                   </button>
                 </div>
               )}

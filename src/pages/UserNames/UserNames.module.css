@@ -15,6 +15,11 @@
   gap: 1rem;
 }
 
+.myDiv {
+  position: fixed;
+  bottom: 1rem;
+}
+
 .nameBlock {
   display: flex;
   flex-direction: column;

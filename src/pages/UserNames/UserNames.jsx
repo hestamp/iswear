@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styles from './UserNames.module.css'
 
-import { PiCheckFatFill } from 'react-icons/pi'
-
 import { useNavigate } from 'react-router-dom'
 
 import { HiOutlineSwitchHorizontal } from 'react-icons/hi'
@@ -12,8 +10,14 @@ import MyInput from '../../components/Tools/MyInput/MyInput'
 import MyButton from '../../components/Tools/MyButton/MyButton'
 import { useMyContext } from '../../context/GeneralContext'
 const UserNames = () => {
-  const { firstName, setFirstName, secondName, setSecondName, setPageName } =
-    useMyContext()
+  const {
+    firstName,
+    setFirstName,
+    secondName,
+    setSecondName,
+    setPageName,
+    lang,
+  } = useMyContext()
 
   const navigate = useNavigate()
 
@@ -24,12 +28,12 @@ const UserNames = () => {
   }
 
   useEffect(() => {
-    setPageName('Гравці')
+    setPageName(lang == 'ENG' ? 'Names' : 'Гравці')
   }, [])
 
   const generateRandomName = () => {
-    const randomIndex = Math.floor(Math.random() * randomNames.length)
-    return randomNames[randomIndex]
+    const randomIndex = Math.floor(Math.random() * randomNames[lang].length)
+    return randomNames[lang][randomIndex]
   }
 
   const getName = (setFunc) => {
@@ -62,14 +66,16 @@ const UserNames = () => {
 
         <form onSubmit={saveName} className={styles.nameBlock}>
           <div className={styles.onePlayer}>
-            <h4>Гравець 1</h4>
+            <h4>{lang == 'ENG' ? 'Player 1' : 'Гравець 1'}</h4>
             <MyInput
               rightIco
               rightOpacity={firstName.length}
               rightFunc={() => clearInput(setFirstName)}
               leftFunc={() => getName(setFirstName)}
               leftIco={<HiOutlineSwitchHorizontal />}
-              placeholder="місце для фантазії"
+              placeholder={
+                lang == 'ENG' ? 'place for imagination' : 'місце для фантазії'
+              }
               setFunc={setFirstName}
               maxLength={11}
               minLength={3}
@@ -79,9 +85,11 @@ const UserNames = () => {
           </div>
 
           <div className={styles.onePlayer}>
-            <h4>Гравець 2</h4>
+            <h4>{lang == 'ENG' ? 'Player 2' : 'Гравець 2'}</h4>
             <MyInput
-              placeholder="місце для фантазії"
+              placeholder={
+                lang == 'ENG' ? 'place for imagination' : 'місце для фантазії'
+              }
               rightOpacity={secondName.length}
               rightIco
               rightFunc={() => clearInput(setSecondName)}
@@ -99,14 +107,17 @@ const UserNames = () => {
             />
           </div>
         </form>
-        {firstName.length > 1 && secondName.length > 1 ? (
-          <MyButton onClick={saveName}>
-            <PiCheckFatFill />
-            Зберегти
-          </MyButton>
-        ) : (
-          <div></div>
-        )}
+        {
+          <div className={styles.myDiv}>
+            {firstName.length > 1 && secondName.length > 1 ? (
+              <MyButton onClick={saveName}>
+                {lang == 'ENG' ? 'Save' : 'Зберегти'}
+              </MyButton>
+            ) : (
+              <div></div>
+            )}
+          </div>
+        }
       </div>
     </>
   )

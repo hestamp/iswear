@@ -1,6 +1,7 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState } from 'react'
+import { menuLocal } from '../../data/localization'
 
 export const GeneralContext = createContext()
 
@@ -15,6 +16,7 @@ export const GeneralProvider = ({ children }) => {
   const [questArray, setQuestArray] = useState(null)
   const [customTopics, setCustomTopics] = useState([])
   const [pageName, setPageName] = useState('Page')
+  const [lang, setLang] = useState('ENG')
 
   useEffect(() => {
     const oneName = localStorage.getItem('username')
@@ -24,6 +26,11 @@ export const GeneralProvider = ({ children }) => {
     const twoName = localStorage.getItem('secondname')
     if (twoName) {
       setSecondName(twoName)
+    }
+
+    const userLang = localStorage.getItem('language')
+    if (userLang) {
+      setLang(userLang)
     }
   }, [])
 
@@ -48,6 +55,8 @@ export const GeneralProvider = ({ children }) => {
     setPageColor,
     pageName,
     setPageName,
+    lang,
+    setLang,
   }
 
   return (

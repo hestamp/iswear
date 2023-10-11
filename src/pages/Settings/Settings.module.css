@@ -1,0 +1,44 @@
+.setting {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo h1 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.statBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  border: var(--borderMain);
+  background-color: var(--sideBg);
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.oneBlock {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 90%;
+  justify-content: space-between;
+}
+
+.oneBlock p {
+  text-transform: capitalize;
+}

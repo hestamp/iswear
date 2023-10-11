@@ -43,4 +43,8 @@
   margin: 0;
   overflow-y: auto;
   overflow-x: hidden;
+  /* border: 12px solid transparent;
+  border-image-source: url(http://botanicus.kiev.ua/templates/yoo_frequency/less/uikit/images/woods/panel_box_border.png);
+  border-image-slice: 15;
+  border-image-repeat: round; */
 }
