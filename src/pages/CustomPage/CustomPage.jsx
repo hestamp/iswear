@@ -10,8 +10,6 @@ import { useNavigate } from 'react-router-dom'
 import { useMyContext } from '../../context/GeneralContext'
 import { customLang } from '../../../data/static'
 
-const arrayList = []
-
 const customTopicsArr = {
   name: 'Свої теми',
   link: 'custom',
@@ -33,7 +31,11 @@ const CustomPage = () => {
   const [topicName, setTopicName] = useState('')
 
   useEffect(() => {
-    setCustomTopics(arrayList)
+    setCustomTopics([])
+  }, [])
+
+  useEffect(() => {
+    setPageName(lang == 'ENG' ? 'Custom topics' : 'Свої питання')
   }, [])
 
   const deleteItem = (item) => {

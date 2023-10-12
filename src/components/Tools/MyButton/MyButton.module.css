@@ -18,8 +18,14 @@
 }
 
 .allButt:hover {
-  opacity: 0.66;
+  opacity: 0.8;
   transition: 0.3s;
+}
+
+.allButt:disabled {
+  color: black;
+  background-color: gray;
+  opacity: 0.3;
 }
 
 @media (max-width: 600px) {

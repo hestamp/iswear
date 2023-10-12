@@ -109,13 +109,12 @@ const UserNames = () => {
         </form>
         {
           <div className={styles.myDiv}>
-            {firstName.length > 1 && secondName.length > 1 ? (
-              <MyButton onClick={saveName}>
-                {lang == 'ENG' ? 'Save' : 'Зберегти'}
-              </MyButton>
-            ) : (
-              <div></div>
-            )}
+            <MyButton
+              disabled={firstName.length < 1 || secondName.length < 1}
+              onClick={saveName}
+            >
+              {lang == 'ENG' ? 'Save' : 'Зберегти'}
+            </MyButton>
           </div>
         }
       </div>
