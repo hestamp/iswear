@@ -18,14 +18,17 @@
 }
 
 .reasonBlock {
-  width: 100%;
+  width: fit-content;
+  padding: 0 1rem;
   display: flex;
   height: 50px;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
   border-radius: 5px;
-  box-shadow: var(--boxShadowMain);
+  background-color: var(--bgSecond);
+  box-shadow: var(--boxShadow);
+  margin-bottom: 1rem;
 }
 
 .posBlock h4 {
@@ -41,11 +44,12 @@
   display: flex;
   height: 50px;
   margin-top: 1rem;
+  background-color: var(--bgSecond);
   justify-content: space-between;
   align-items: center;
   border-radius: 5px;
   gap: 0.5rem;
-  box-shadow: var(--boxShadowMain);
+  box-shadow: var(--boxShadow);
 }
 
 .buttAndName h4 {
@@ -158,8 +162,9 @@
 .cardBlock {
   width: calc(100% - 1rem);
   height: 100%;
-  box-shadow: var(--boxShadowMain);
+
   display: flex;
+  box-shadow: var(--boxShadowMain);
   background-color: var(--bgColor);
   flex-direction: column;
   justify-content: space-between;

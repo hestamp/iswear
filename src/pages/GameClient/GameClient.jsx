@@ -272,7 +272,6 @@ const GameClient = () => {
                 <h4>{gameLang.reason[lang]}:</h4>
                 <button className={styles.myButt2} onClick={getRandomReason}>
                   <FaPlus />
-                  {/* {gameLang.pick[lang]} */}
                 </button>
               </div>
             ) : (
