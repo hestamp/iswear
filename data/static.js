@@ -403,6 +403,7 @@ export const gameLang = {
   end: { ENG: 'End turn', UKR: 'Завершити' },
   start: { ENG: 'Start round', UKR: 'Почати раунд' },
   next: { ENG: 'Next topic', UKR: 'Наступна тема' },
+  again: { ENG: 'Repeat', UKR: 'Повторити' },
   random: { ENG: 'Random topic', UKR: 'Випадкова' },
 }
 export const customLang = {

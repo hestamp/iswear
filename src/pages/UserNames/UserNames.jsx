@@ -93,15 +93,11 @@ const UserNames = () => {
               rightOpacity={secondName.length}
               rightIco
               rightFunc={() => clearInput(setSecondName)}
-              leftIco={
-                <HiOutlineSwitchHorizontal
-                  onClick={() => getName(setSecondName)}
-                  className={styles.closeIco2}
-                />
-              }
+              leftIco={<HiOutlineSwitchHorizontal />}
               setFunc={setSecondName}
               maxLength={11}
               minLength={3}
+              leftFunc={() => getName(setSecondName)}
               bgcolor="white"
               value={secondName}
             />

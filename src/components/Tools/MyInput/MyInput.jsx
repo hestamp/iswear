@@ -14,21 +14,21 @@ const MyInput = ({
   leftFunc,
 }) => {
   return (
-    <div className={styles.inputDiv}>
-      <input
-        placeholder={placeholder}
-        value={value}
-        onChange={(e) => setFunc(e.target.value)}
-        maxLength={maxLength}
-        minLength={minLength}
-        type="text"
-      />
-      {leftIco && (
-        <div onClick={leftFunc} className={styles.inputIconLeft}>
-          {leftIco}
-        </div>
-      )}
-
+    <div className={styles.myInput}>
+      {' '}
+      <div onClick={leftFunc} className={styles.inputIconLeft}>
+        {leftIco}
+      </div>
+      <div className={styles.inputDiv}>
+        <input
+          placeholder={placeholder}
+          value={value}
+          onChange={(e) => setFunc(e.target.value)}
+          maxLength={maxLength}
+          minLength={minLength}
+          type="text"
+        />
+      </div>
       {rightIco && (
         <RxCross1
           style={{ opacity: `${rightOpacity}` }}

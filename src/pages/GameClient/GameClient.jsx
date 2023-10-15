@@ -9,6 +9,7 @@ import {
   staticMenu,
 } from '../../../data/static'
 import { useMyContext } from '../../context/GeneralContext'
+import { useNavigate } from 'react-router-dom'
 
 const GameClient = () => {
   const [roundNum, setRoundNum] = useState(1)
@@ -25,6 +26,8 @@ const GameClient = () => {
   const [categoryName, setCategoryName] = useState('')
   const [isTimer, setIsTimer] = useState(false)
 
+  const navigate = useNavigate()
+
   const {
     firstName,
     setFirstName,
@@ -38,6 +41,16 @@ const GameClient = () => {
     topicObj,
     setTopicObj,
   } = useMyContext()
+
+  useEffect(() => {
+    if (!secondName || !firstName) {
+      navigate(`/`)
+    }
+
+    return () => {
+      console.log('Component unmounted or page left')
+    }
+  }, [])
 
   const playBeep = () => {
     if (audioRef.current) {
@@ -96,6 +109,10 @@ const GameClient = () => {
     const newTopic = generateRandomTopic(true)
     setTopicName(newTopic)
     setRoundNum((prev) => prev + 1)
+    setRoundTurn(1)
+  }
+
+  const repeatRound = () => {
     setRoundTurn(1)
   }
   const getRandom = () => {
@@ -197,108 +214,88 @@ const GameClient = () => {
     >
       <div className={styles.gameClient}>
         <div className={styles.userBLock}>
-          <button
-            onClick={() => nextPlayer(1)}
-            style={{ backgroundColor: 'skyblue' }}
-            className={`${styles.oneUser} ${
-              activeSpeaker == 1 && styles.activeUser
-            }`}
-          >
-            {activeSpeaker == 1 && (
-              <img className={styles.icoSvg} src="/vite.svg" />
-            )}
-            <h4>{firstName}</h4>
-          </button>
-          <button
-            onClick={() => nextPlayer(2)}
-            style={{ backgroundColor: 'pink' }}
-            className={`${styles.oneUser} ${
-              activeSpeaker == 2 && styles.activeUser
-            }`}
-          >
-            <h4>{secondName}</h4>
-            {activeSpeaker == 2 && (
-              <img className={styles.icoSvg2} src="/vite.svg" />
-            )}
-          </button>
-        </div>
-
-        <div className={styles.allInfoBlock}>
-          <div className={styles.cardInfo}>
-            <div className={styles.cardBlock}>
-              <div className={styles.buttAndName}>
-                <button
-                  className={styles.icoSvg3}
-                  style={{ display: `${isTimer ? 'none' : ''}` }}
-                  onClick={switchNames}
-                >
-                  {' '}
-                  <PiUserSwitchBold />
-                </button>
-
-                <h4 className={styles.topicName}> {truncatedTopicName}</h4>
-                <TbSwitch2
-                  className={styles.icoSvg3}
-                  onClick={getRandom}
-                  style={{ display: `${isTimer ? 'none' : ''}` }}
-                />
-              </div>
-
-              {noTopic && <h3>{gameLang.choose[lang]}!</h3>}
-              {!noTopic && questArray && questArray.length ? (
-                <h3 data-value={topicName}>{topicName}</h3>
-              ) : !noTopic ? (
-                <h3>{gameLang.over[lang]}</h3>
-              ) : (
-                <></>
-              )}
-
-              {!isCard ? (
-                <div className={styles.reasonBlock}>
-                  <h4>{gameLang.reason[lang]}:</h4>
-                  <button className={styles.myButt2} onClick={getRandomReason}>
-                    {gameLang.pick[lang]}
-                  </button>
-                </div>
-              ) : (
-                <div className={styles.reasonBlock}>
-                  <h4>{reasonName}</h4>
-                </div>
-              )}
+          {activeSpeaker == 2 && isTimer ? (
+            <div className={styles.oneUser}>
+              <h1 className={styles.secondDiv}>{seconds}</h1>
             </div>
-          </div>
+          ) : (
+            <button
+              onClick={() => nextPlayer(1)}
+              style={{ backgroundColor: 'skyblue' }}
+              className={`${styles.oneUser} ${
+                activeSpeaker == 1 && styles.activeUser
+              }`}
+            >
+              {activeSpeaker == 1 && (
+                <img className={styles.icoSvg} src="/vite.svg" />
+              )}
+              <h4>{firstName}</h4>
+            </button>
+          )}
+          {activeSpeaker == 1 && isTimer ? (
+            <div className={styles.oneUser}>
+              <h1 className={styles.secondDiv}>{seconds}</h1>
+            </div>
+          ) : (
+            <button
+              onClick={() => nextPlayer(2)}
+              style={{ backgroundColor: 'pink' }}
+              className={`${styles.oneUser} ${
+                activeSpeaker == 2 && styles.activeUser
+              }`}
+            >
+              <h4>{secondName}</h4>
+              {activeSpeaker == 2 && (
+                <img className={styles.icoSvg2} src="/vite.svg" />
+              )}
+            </button>
+          )}
         </div>
-        <div className={styles.gameInfo}>
-          <div className={styles.gameStatus}>
-            {isTimer ? (
-              <>
-                <h1 className={styles.secondDiv}>{seconds}</h1>
-              </>
-            ) : (
-              <div className={styles.posBlock}>
-                <div
-                  style={{
-                    backgroundColor: `${
-                      activeSpeaker == 1 ? 'skyblue' : 'pink'
-                    }`,
-                  }}
-                  className={styles.positionH}
-                >
-                  <h4>
-                    {gameLang.round[lang]} {roundNum}
-                  </h4>
 
-                  <h4>
-                    {activeSpeaker == 1 ? `${firstName}` : `${secondName}`}:{' '}
-                    {activeSpeaker == 1
-                      ? `${gameLang.for[lang]}`
-                      : `${gameLang.against[lang]}`}
-                  </h4>
-                </div>
+        <div className={`${styles.cardInfo} ${isTimer && styles.black}`}>
+          <div className={styles.cardBlock}>
+            <div className={styles.buttAndName}>
+              <button
+                className={styles.icoSvg3}
+                style={{ display: `${isTimer ? 'none' : ''}` }}
+                onClick={switchNames}
+              >
+                {' '}
+                <PiUserSwitchBold />
+              </button>
+
+              <h4 className={styles.topicName}> {truncatedTopicName}</h4>
+              <TbSwitch2
+                className={styles.icoSvg3}
+                onClick={getRandom}
+                style={{ display: `${isTimer ? 'none' : ''}` }}
+              />
+            </div>
+
+            {noTopic && <h3>{gameLang.choose[lang]}!</h3>}
+            {!noTopic && questArray && questArray.length ? (
+              <h3 data-value={topicName}>{topicName}</h3>
+            ) : !noTopic ? (
+              <h3>{gameLang.over[lang]}</h3>
+            ) : (
+              <></>
+            )}
+
+            {!isCard ? (
+              <div className={styles.reasonBlock}>
+                <h4>{gameLang.reason[lang]}:</h4>
+                <button className={styles.myButt2} onClick={getRandomReason}>
+                  {gameLang.pick[lang]}
+                </button>
+              </div>
+            ) : (
+              <div className={styles.reasonBlock}>
+                <h4>{reasonName}</h4>
               </div>
             )}
           </div>
         </div>
+
         <div className={styles.gameInfo}>
           {isTimer ? (
             <div className={styles.buttBlock}>
@@ -320,9 +317,14 @@ const GameClient = () => {
                   {gameLang.start[lang]}
                 </button>
               ) : topicName.length && roundTurn > 2 ? (
-                <button onClick={getNewTopic} className={styles.myButt}>
-                  {gameLang.next[lang]}
-                </button>
+                <>
+                  <button onClick={repeatRound} className={styles.myButt}>
+                    {gameLang.again[lang]}
+                  </button>
+                  <button onClick={getNewTopic} className={styles.myButt}>
+                    {gameLang.next[lang]}
+                  </button>
+                </>
               ) : (
                 <div className={styles.buttBlock}>
                   <button onClick={getRandom} className={styles.myButt}>

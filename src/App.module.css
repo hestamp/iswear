@@ -36,7 +36,7 @@
   align-items: center;
   flex-direction: column;
   border-radius: 10px;
-  box-shadow: var(--boxShadow);
+  box-shadow: var(--boxShadowMain);
   background-color: var(--bgSecond);
   border: var(--borderMain);
   padding: 0.5rem;

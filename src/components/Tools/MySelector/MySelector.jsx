@@ -9,6 +9,7 @@ const MySelector = ({ options, onSelect, active, basic }) => {
       active(newSelectedOption)
     }
   }
+
   return (
     <div className={styles.simpleSelector}>
       <select
@@ -18,11 +19,7 @@ const MySelector = ({ options, onSelect, active, basic }) => {
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>
-            {option.span ? (
-              <img src={option.span} alt={option.value} />
-            ) : (
-              <span>{option.text}</span>
-            )}
+            {option.text}
           </option>
         ))}
       </select>
