@@ -29,7 +29,7 @@
   }
   .allPage {
     border-radius: 10px;
-    border: var(--borderMain);
+
     height: calc(100% - 2px);
   }
   .section2 {

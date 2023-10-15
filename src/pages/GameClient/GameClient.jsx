@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './GameClient.module.css'
 import { PiUserSwitchBold } from 'react-icons/pi'
+import { BsPlayFill } from 'react-icons/bs'
 import { FaPlus } from 'react-icons/fa'
 import { TbSwitch2 } from 'react-icons/tb'
 import {
@@ -11,6 +12,9 @@ import {
 } from '../../../data/static'
 import { useMyContext } from '../../context/GeneralContext'
 import { useNavigate } from 'react-router-dom'
+import { useTheme } from '../../context/ThemeContext'
+import { FiRepeat } from 'react-icons/fi'
+import { TbPlayerTrackNextFilled } from 'react-icons/tb'
 
 const GameClient = () => {
   const [roundNum, setRoundNum] = useState(1)
@@ -28,6 +32,8 @@ const GameClient = () => {
   const [isTimer, setIsTimer] = useState(false)
 
   const navigate = useNavigate()
+
+  const { playerColor, setPlayerColor } = useTheme()
 
   const {
     firstName,
@@ -47,9 +53,22 @@ const GameClient = () => {
     if (!secondName || !firstName) {
       navigate(`/`)
     }
+  }, [])
 
-    return () => {
-      console.log('Component unmounted or page left')
+  useEffect(() => {
+    if (!topicObj && subMode == null) {
+      setTopicObj(staticMenu[0])
+      setQuestArray(staticMenu[0].questions[lang])
+      setCategoryName(staticMenu[0].name[lang])
+    } else if (!topicObj && subMode == 'random') {
+      setQuestArray(allTopics)
+      setCategoryName(lang == 'ENG' ? 'Random' : 'Випадкові')
+    } else if (topicObj && subMode == 'custom') {
+      setQuestArray(topicObj.questions)
+      setCategoryName(lang == 'ENG' ? 'Custom topics' : 'Свої теми')
+    } else {
+      setQuestArray(topicObj.questions[lang])
+      setCategoryName(topicObj.name[lang])
     }
   }, [])
 
@@ -80,29 +99,15 @@ const GameClient = () => {
   }
 
   useEffect(() => {
-    if (!topicObj && subMode == null) {
-      setTopicObj(staticMenu[0])
-      setQuestArray(staticMenu[0].questions)
-      setCategoryName(staticMenu[0].name)
-      if (topicObj) {
-        setCategoryName(topicObj.name)
-      }
-    } else if (!topicObj && subMode == 'random') {
-      setQuestArray(allTopics)
-      setCategoryName('Випадкові')
-    } else {
-      setQuestArray(topicObj.questions[lang])
-      setCategoryName(topicObj.name[lang])
-    }
-  }, [])
-
-  useEffect(() => {
     if (isTimer && activeSpeaker == 1) {
       setPageColor('skyblue')
+      setPlayerColor('skyblue')
     } else if (isTimer && activeSpeaker == 2) {
       setPageColor('pink')
+      setPlayerColor('pink')
     } else {
       setPageColor('#f7f8fa')
+      setPlayerColor('')
     }
   }, [activeSpeaker, isTimer])
 
@@ -184,12 +189,6 @@ const GameClient = () => {
     setSecondName(oneNames)
   }
 
-  // const truncateTopicName = (name, maxLength) => {
-  //   return name.length > maxLength ? name.slice(0, maxLength - 3) + '...' : name
-  // }
-
-  // const truncatedTopicName = truncateTopicName(categoryName, 15)
-
   useEffect(() => {
     if (activeSpeaker == 1 && !isTimer) {
       setActiveSpeaker(2)
@@ -253,7 +252,7 @@ const GameClient = () => {
           )}
         </div>
 
-        <div className={`${styles.cardInfo} ${isTimer && styles.black}`}>
+        <div className={styles.cardInfo}>
           <div className={styles.cardBlock}>
             <div className={styles.buttAndName}>
               <h4 className={styles.topicName}> {categoryName}</h4>
@@ -311,14 +310,15 @@ const GameClient = () => {
               {topicName.length && roundTurn <= 2 ? (
                 <button onClick={startTimer} className={styles.myButt}>
                   {gameLang.start[lang]}
+                  <BsPlayFill />
                 </button>
               ) : topicName.length && roundTurn > 2 ? (
                 <>
                   <button onClick={repeatRound} className={styles.myButt}>
-                    {gameLang.again[lang]}
+                    <FiRepeat />
                   </button>
                   <button onClick={getNewTopic} className={styles.myButt}>
-                    {gameLang.next[lang]}
+                    <TbPlayerTrackNextFilled />
                   </button>
                 </>
               ) : (

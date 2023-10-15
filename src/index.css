@@ -36,6 +36,13 @@ html {
   color: var(--textColor);
 }
 
+.skyblue {
+  background-color: skyblue;
+}
+.pink {
+  background-color: pink;
+}
+
 .dark {
   --bgColor: #161616;
   --bgSecond: #212121;

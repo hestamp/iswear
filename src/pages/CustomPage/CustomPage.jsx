@@ -26,6 +26,7 @@ const CustomPage = () => {
     customTopics,
     setCustomTopics,
     lang,
+    setPageName,
   } = useMyContext()
 
   const [topicName, setTopicName] = useState('')
@@ -71,56 +72,59 @@ const CustomPage = () => {
     <div className={styles.allPage}>
       <div className={styles.customPage}>
         <BackBar />
-        <h4 className={styles.mainLabel}>{customLang.header[lang]}:</h4>
-        <MyInput
-          leftIco={
-            <FiPlus
-              style={{ display: `${topicName.length > 5 ? '' : 'none'}` }}
-              className={styles.addIco}
-              onClick={addItem}
-            />
-          }
-          placeholder={customLang.inputplace[lang]}
-          setFunc={setTopicName}
-          minLength={3}
-          value={topicName}
-          bgcolor="white"
-        />
-        <div className={styles.topicsBlock}>
-          <div className={styles.signNumb}>
-            <h4>{customLang.list[lang]}:</h4>
-            <h4>{customTopics.length}</h4>
-          </div>
-          {customTopics.length ? (
-            <div className={styles.topicsBlock2}>
-              {customTopics.length ? (
-                customTopics.map((item, id) => (
-                  <div className={styles.oneTopic} key={item}>
-                    <h4>{item}</h4>
-                    <MdOutlineClose
-                      className={styles.closeIco}
-                      onClick={() => deleteItem(id)}
-                    />
-                  </div>
-                ))
-              ) : (
-                <></>
-              )}
+        <div className={styles.restBlock}>
+          <h4 className={styles.mainLabel}>{customLang.header[lang]}:</h4>
+          <MyInput
+            maxLength={30}
+            leftIco={
+              <FiPlus
+                style={{ display: `${topicName.length > 5 ? '' : 'none'}` }}
+                className={styles.addIco}
+                onClick={addItem}
+              />
+            }
+            placeholder={customLang.inputplace[lang]}
+            setFunc={setTopicName}
+            minLength={3}
+            value={topicName}
+            bgcolor="white"
+          />
+          <div className={styles.topicsBlock}>
+            <div className={styles.signNumb}>
+              <h4>{customLang.list[lang]}:</h4>
+              <h4>{customTopics.length}</h4>
             </div>
-          ) : (
-            <></>
-          )}
-        </div>
-        <div className={styles.startOrText}>
-          {customTopics.length < 6 ? (
-            <h4>
-              {customLang.tostart[lang]}
-              <br />
-              {customLang.addsome[lang]} {6 - customTopics.length}
-            </h4>
-          ) : (
-            <MyButton onClick={runMode}>{customLang.start[lang]}</MyButton>
-          )}
+            {customTopics.length ? (
+              <div className={styles.topicsBlock2}>
+                {customTopics.length ? (
+                  customTopics.map((item, id) => (
+                    <div className={styles.oneTopic} key={id}>
+                      <h4>{item}</h4>
+                      <MdOutlineClose
+                        className={styles.closeIco}
+                        onClick={() => deleteItem(id)}
+                      />
+                    </div>
+                  ))
+                ) : (
+                  <></>
+                )}
+              </div>
+            ) : (
+              <></>
+            )}
+          </div>
+          <div className={styles.startOrText}>
+            {customTopics.length < 6 ? (
+              <h4>
+                {customLang.tostart[lang]}
+                <br />
+                {customLang.addsome[lang]} {6 - customTopics.length}
+              </h4>
+            ) : (
+              <MyButton onClick={runMode}>{customLang.start[lang]}</MyButton>
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './MainPage.module.css'
 import { Link } from 'react-router-dom'
 import { categoriesArr } from '../../../data/static'
 import { useMyContext } from '../../context/GeneralContext'
 import Footer from '../../components/Footer/Footer'
+import { useTheme } from '../../context/ThemeContext'
 
 const MainPage = () => {
   const { setPickedMode, lang, setLang } = useMyContext()
+
+  const { setPlayerColor } = useTheme()
+
+  useEffect(() => {
+    setPlayerColor('')
+  }, [])
 
   return (
     <>
