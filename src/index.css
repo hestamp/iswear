@@ -29,22 +29,6 @@ html {
   height: 100%;
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: calc(100vh - calc(100vh - 100%));
-}
-
-@keyframes riseBackground {
-  0% {
-    height: 0;
-  }
-  100% {
-    height: 100%;
-  }
-}
-
 .theme {
   width: 100%;
   height: 100%;
@@ -58,8 +42,10 @@ body {
   --sideBg: #2c2c2c;
   --textColor: #ffffff;
   --borderMain: 1px solid #2c2c2c;
-  --boxShadow: 0px 8px 16px 0px rgba(22, 22, 22, 0.3),
-    0px 1px 1px 0px rgba(22, 22, 22, 0.6);
+  --boxShadowMain: 0px 3px 9px 0px rgba(80, 80, 80, 0.3),
+    0px 4px 8px 0px rgba(80, 80, 80, 0.3);
+  --boxShadow: 0px 8px 16px 0px rgba(80, 80, 80, 0.3),
+    0px 1px 1px 0px rgba(80, 80, 80, 0.3);
 }
 
 html,

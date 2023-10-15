@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import styles from './GameClient.module.css'
 import { PiUserSwitchBold } from 'react-icons/pi'
+import { FaPlus } from 'react-icons/fa'
 import { TbSwitch2 } from 'react-icons/tb'
 import {
   allTopics,
@@ -183,11 +184,11 @@ const GameClient = () => {
     setSecondName(oneNames)
   }
 
-  const truncateTopicName = (name, maxLength) => {
-    return name.length > maxLength ? name.slice(0, maxLength - 3) + '...' : name
-  }
+  // const truncateTopicName = (name, maxLength) => {
+  //   return name.length > maxLength ? name.slice(0, maxLength - 3) + '...' : name
+  // }
 
-  const truncatedTopicName = truncateTopicName(categoryName, 15)
+  // const truncatedTopicName = truncateTopicName(categoryName, 15)
 
   useEffect(() => {
     if (activeSpeaker == 1 && !isTimer) {
@@ -255,21 +256,7 @@ const GameClient = () => {
         <div className={`${styles.cardInfo} ${isTimer && styles.black}`}>
           <div className={styles.cardBlock}>
             <div className={styles.buttAndName}>
-              <button
-                className={styles.icoSvg3}
-                style={{ display: `${isTimer ? 'none' : ''}` }}
-                onClick={switchNames}
-              >
-                {' '}
-                <PiUserSwitchBold />
-              </button>
-
-              <h4 className={styles.topicName}> {truncatedTopicName}</h4>
-              <TbSwitch2
-                className={styles.icoSvg3}
-                onClick={getRandom}
-                style={{ display: `${isTimer ? 'none' : ''}` }}
-              />
+              <h4 className={styles.topicName}> {categoryName}</h4>
             </div>
 
             {noTopic && <h3>{gameLang.choose[lang]}!</h3>}
@@ -285,7 +272,8 @@ const GameClient = () => {
               <div className={styles.reasonBlock}>
                 <h4>{gameLang.reason[lang]}:</h4>
                 <button className={styles.myButt2} onClick={getRandomReason}>
-                  {gameLang.pick[lang]}
+                  <FaPlus />
+                  {/* {gameLang.pick[lang]} */}
                 </button>
               </div>
             ) : (
@@ -312,6 +300,14 @@ const GameClient = () => {
             </div>
           ) : (
             <div className={styles.buttBlock}>
+              <button
+                className={styles.icoSvg3}
+                style={{ display: `${isTimer ? 'none' : ''}` }}
+                onClick={switchNames}
+              >
+                {' '}
+                <PiUserSwitchBold />
+              </button>
               {topicName.length && roundTurn <= 2 ? (
                 <button onClick={startTimer} className={styles.myButt}>
                   {gameLang.start[lang]}
@@ -332,6 +328,14 @@ const GameClient = () => {
                   </button>
                 </div>
               )}
+              <button
+                className={styles.icoSvg3}
+                onClick={getRandom}
+                style={{ display: `${isTimer ? 'none' : ''}` }}
+              >
+                {' '}
+                <TbSwitch2 />
+              </button>
             </div>
           )}
         </div>

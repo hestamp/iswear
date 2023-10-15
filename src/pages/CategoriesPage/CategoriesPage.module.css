@@ -37,9 +37,6 @@
   .dayCarousel {
     grid-template-columns: auto auto auto;
   }
-  .section2 {
-    flex: 16;
-  }
 }
 
 .dayTimeIco {

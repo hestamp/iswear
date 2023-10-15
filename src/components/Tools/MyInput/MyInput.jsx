@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './MyInput.module.css'
-import { RxCross1 } from 'react-icons/rx'
 const MyInput = ({
   placeholder,
   setFunc,
@@ -8,17 +7,11 @@ const MyInput = ({
   maxLength,
   minLength,
   leftIco,
-  rightIco,
-  rightFunc,
-  rightOpacity,
   leftFunc,
 }) => {
   return (
     <div className={styles.myInput}>
       {' '}
-      <div onClick={leftFunc} className={styles.inputIconLeft}>
-        {leftIco}
-      </div>
       <div className={styles.inputDiv}>
         <input
           placeholder={placeholder}
@@ -29,12 +22,10 @@ const MyInput = ({
           type="text"
         />
       </div>
-      {rightIco && (
-        <RxCross1
-          style={{ opacity: `${rightOpacity}` }}
-          className={styles.inputIconRight}
-          onClick={rightFunc}
-        />
+      {leftIco && (
+        <div onClick={leftFunc} className={styles.inputIconLeft}>
+          {leftIco}
+        </div>
       )}
     </div>
   )

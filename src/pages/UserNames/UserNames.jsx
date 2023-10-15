@@ -23,10 +23,6 @@ const UserNames = () => {
 
   const { subMode } = useMyContext()
 
-  const clearInput = (func) => {
-    func('')
-  }
-
   useEffect(() => {
     setPageName(lang == 'ENG' ? 'Names' : 'Гравці')
   }, [])
@@ -68,9 +64,6 @@ const UserNames = () => {
           <div className={styles.onePlayer}>
             <h4>{lang == 'ENG' ? 'Player 1' : 'Гравець 1'}</h4>
             <MyInput
-              rightIco
-              rightOpacity={firstName.length}
-              rightFunc={() => clearInput(setFirstName)}
               leftFunc={() => getName(setFirstName)}
               leftIco={<HiOutlineSwitchHorizontal />}
               placeholder={
@@ -90,9 +83,6 @@ const UserNames = () => {
               placeholder={
                 lang == 'ENG' ? 'place for imagination' : 'місце для фантазії'
               }
-              rightOpacity={secondName.length}
-              rightIco
-              rightFunc={() => clearInput(setSecondName)}
               leftIco={<HiOutlineSwitchHorizontal />}
               setFunc={setSecondName}
               maxLength={11}

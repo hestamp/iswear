@@ -45,10 +45,6 @@ const CustomPage = () => {
     }
   }
 
-  const clearInput = () => {
-    setTopicName('')
-  }
-
   const addItem = () => {
     const newTopicsArray = [...customTopics, topicName]
     setTopicName('')
@@ -77,8 +73,6 @@ const CustomPage = () => {
         <BackBar />
         <h4 className={styles.mainLabel}>{customLang.header[lang]}:</h4>
         <MyInput
-          rightIco
-          rightFunc={clearInput}
           leftIco={
             <FiPlus
               style={{ display: `${topicName.length > 5 ? '' : 'none'}` }}

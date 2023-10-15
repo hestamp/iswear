@@ -17,6 +17,11 @@
   align-items: center;
 }
 
+.inputIconLeft svg {
+  width: 22px;
+  height: 22px;
+}
+
 .inputDiv {
   position: relative;
   flex-grow: 1;
@@ -35,15 +40,4 @@
   font-size: 16px;
   background-color: var(--sideBg);
   border: var(--borderMain);
-}
-
-.inputDiv svg {
-  width: 18px;
-  height: 18px;
-}
-.inputIconRight {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }

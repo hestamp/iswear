@@ -3,7 +3,10 @@
   flex-direction: column;
   gap: 10px;
   align-items: center;
-  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  width: calc(100% - 1rem);
+  padding: 0 0.5rem;
 }
 
 .categoryList {
@@ -11,7 +14,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 90%;
   gap: 1rem;
 }
 
@@ -43,4 +46,5 @@
 
 .oneBlock p {
   max-width: 90%;
+  color: gray;
 }
