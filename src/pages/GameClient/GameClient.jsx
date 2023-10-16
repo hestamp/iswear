@@ -60,8 +60,9 @@ const GameClient = () => {
       setTopicObj(staticMenu[0])
       setQuestArray(staticMenu[0].questions[lang])
       setCategoryName(staticMenu[0].name[lang])
-    } else if (!topicObj && subMode == 'random') {
-      setQuestArray(allTopics)
+    } else if (subMode == 'random') {
+      setQuestArray(allTopics[lang])
+
       setCategoryName(lang == 'ENG' ? 'Random' : 'Випадкові')
     } else if (topicObj && subMode == 'custom') {
       setQuestArray(topicObj.questions)
