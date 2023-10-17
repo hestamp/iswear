@@ -1,7 +1,6 @@
 'use client'
 
 import { createContext, useContext, useEffect, useState } from 'react'
-import { menuLocal } from '../../data/localization'
 
 export const GeneralContext = createContext()
 

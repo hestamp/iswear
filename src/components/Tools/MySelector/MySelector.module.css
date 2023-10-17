@@ -10,8 +10,7 @@
   padding: 2px;
   cursor: pointer;
   font-size: 14px;
-  background-color: none;
-  background: none;
+  background-color: var(--bgSecond);
   color: var(--textColor);
   border: var(--borderMain);
   border-radius: 4px;
