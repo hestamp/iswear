@@ -1,16 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>Prove It - Debate Game</title>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
     />
-    <title>ProveIt</title>
+
+    <link rel="canonical" href="https://proveit.fun/" />
+    <meta http-equiv="content-language" content="en-gb" />
+
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Prove It - Debate Game" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <link rel="apple-touch-icon" href="/x192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="author" content="Tom Hestamp" />
+    <meta
+      name="keywords"
+      content="debate game, debate, proveit, prove it fun"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#eceff3" />
+
+    <meta
+      name="description"
+      content="Game designed to enhance debating, improvisation, and creative thinking skills"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://proveit.fun/" />
+    <meta property="og:title" content="Prove It - Debate Game" />
+    <meta
+      property="og:description"
+      content="Encourages creativity, and provides an enjoyable way to develop debate skills and quick thinking. "
+    />
+    <meta property="og:image" content="/bannerInst.jpg" />
+    <meta property="og:image:alt" content="Prove It - Debate Game" />
+    <meta property="og:image:type" content="image/jpg" />
+    <meta property="og:image:width" content="400" />
+    <meta property="og:image:height" content="200" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://proveit.fun/" />
+    <meta
+      property="twitter:title"
+      content="Encourages creativity, and provides an enjoyable way to develop debate skills and quick thinking."
+    />
+    <meta
+      property="twitter:description"
+      content="Game designed to enhance debating, improvisation, and creative thinking skills"
+    />
+    <meta property="og:site_name" content="Prove It - Debate Game" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:site" content="@tomhestamp" />
+    <meta name="twitter:creator" content="@tomhestamp" />
+    <meta name="twitter:image:alt" content="Prove It - Debate Game" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Prove It" />
+    <meta property="twitter:image" content="/banner.jpg" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('service-worker.js')
+            .then(function (registration) {
+              console.log('ServiceWorker registered')
+            })
+            .catch(function (err) {
+              console.log('ServiceWorker error: ', err)
+            })
+        })
+      }
+    </script>
   </body>
 </html>
