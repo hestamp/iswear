@@ -10,8 +10,26 @@ import UserNames from './pages/UserNames/UserNames'
 import CustomPage from './pages/CustomPage/CustomPage'
 import Header from './components/Header/Header'
 import HowTo from './pages/HowTo/HowTo'
+import { useEffect } from 'react'
 
 function App() {
+  useEffect(() => {
+    let animationFrameId
+
+    // Function to keep the display active
+    const keepDisplayActive = () => {
+      animationFrameId = requestAnimationFrame(keepDisplayActive)
+    }
+
+    // Start keeping the display active as soon as the component mounts
+    animationFrameId = requestAnimationFrame(keepDisplayActive)
+
+    return () => {
+      // Clean up the animation frame when the component unmounts
+      cancelAnimationFrame(animationFrameId)
+    }
+  }, [])
+
   return (
     <div className={styles.appwrap}>
       <nav role="navigation" className={styles.section1}>
