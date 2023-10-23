@@ -1,3 +1,9 @@
+.scroll {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
 .howto {
   display: flex;
   flex-direction: column;

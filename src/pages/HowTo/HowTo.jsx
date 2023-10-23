@@ -7,16 +7,18 @@ const HowTo = () => {
   const { lang } = useMyContext()
 
   return (
-    <div className={styles.howto}>
-      <div className={styles.logo}>
-        <h1>{howToPage.name[lang]}</h1>
+    <div className={styles.scroll}>
+      <div className={styles.howto}>
+        <div className={styles.logo}>
+          <h1>{howToPage.name[lang]}</h1>
+        </div>
+        <div className={styles.textBlock}>
+          {howToPage.desc[lang].map((text, id) => (
+            <p key={id}>{text}</p>
+          ))}
+        </div>
+        <Footer />
       </div>
-      <div className={styles.textBlock}>
-        {howToPage.desc[lang].map((text, id) => (
-          <p key={id}>{text}</p>
-        ))}
-      </div>
-      <Footer />
     </div>
   )
 }
